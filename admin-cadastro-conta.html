@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Criar conta de administrador · Imuniza Admin</title>
+<meta name="description" content="Cadastro de profissionais autorizados no painel administrativo do Imuniza.">
+<meta name="theme-color" content="#1b1372">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/auth.css">
+<link rel="stylesheet" href="assets/css/paginas/admin-cadastro-conta.css">
+</head>
+<body>
+
+<div class="auth">
+
+  <aside class="auth__painel auth__painel--admin">
+    <div class="marca marca--clara">
+      <img class="marca__simbolo" src="assets/img/logo-icone.png" alt="" width="44" height="44">
+      <span class="marca__textos">
+        <span class="marca__nome">imuniza</span>
+        <span class="marca__linha">Painel do administrador</span>
+      </span>
+    </div>
+
+    <div>
+      <h1 class="auth__chamada">Cadastro de profissionais autorizados.</h1>
+      <ul class="auth__lista">
+        <li>Vínculo com a unidade de saúde</li>
+        <li>Permissões de envio e cadastro</li>
+        <li>Registro auditável de todas as ações</li>
+      </ul>
+    </div>
+
+    <p class="auth__rodape">Acesso restrito a profissionais autorizados.</p>
+  </aside>
+
+  <main class="auth__area">
+    <div class="auth__cartao">
+
+      <div class="auth__marca-mobile">
+        <div class="marca">
+          <img class="marca__simbolo" src="assets/img/logo-icone.png" alt="" width="44" height="44">
+          <span class="marca__textos">
+            <span class="marca__nome">imuniza</span>
+            <span class="marca__linha">Painel do administrador</span>
+          </span>
+        </div>
+      </div>
+
+      <p><span class="etiqueta etiqueta--azul">Área restrita</span></p>
+
+      <h2 class="auth__titulo" style="margin-top:14px">Criar conta de administrador</h2>
+      <p class="auth__texto">Informe os dados do profissional responsável.</p>
+
+      <form data-destino="admin-visao.html" novalidate>
+        <label class="campo">
+          <span class="campo__rotulo">Nome</span>
+          <input class="entrada" type="text" name="nome" placeholder="Amélia Oliveira"
+                 autocomplete="name" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">E-mail</span>
+          <input class="entrada" type="email" name="email" placeholder="ameliaoliveira@email.com"
+                 autocomplete="email" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">CPF</span>
+          <input class="entrada" type="text" inputmode="numeric" name="cpf"
+                 placeholder="123.456.789-09" data-mascara="cpf" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">Senha</span>
+          <input class="entrada" type="password" name="senha" placeholder="••••••••"
+                 autocomplete="new-password" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">Confirmar senha</span>
+          <input class="entrada" type="password" name="senha2" placeholder="••••••••"
+                 autocomplete="new-password" required>
+        </label>
+
+        <div class="linha-opcoes">
+          <label class="marcador">
+            <input type="checkbox" name="manter" checked>
+            <i></i>
+            Manter conectado
+          </label>
+          <a class="link" href="#">Esqueci a senha</a>
+        </div>
+
+        <div class="auth__acoes">
+          <button class="btn btn--primario btn--bloco" type="submit">Cadastrar</button>
+          <a class="btn btn--contorno btn--bloco" href="admin.html">Já tenho acesso</a>
+        </div>
+      </form>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

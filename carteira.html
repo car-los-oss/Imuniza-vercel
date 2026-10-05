@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carteira Digital · Imuniza</title>
+<meta name="description" content="Comprovante digital de vacinação com QR Code para apresentar na unidade de saúde.">
+<meta name="theme-color" content="#2e1ae6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/carteira.css">
+</head>
+<body data-area="usuario" data-tela="carteira">
+
+<div class="app">
+
+  <aside class="lateral" id="lateral"></aside>
+
+  <div class="principal">
+
+    <header class="topo">
+      <div class="topo__textos">
+        <h1 class="topo__titulo">Carteira Digital</h1>
+        <p class="topo__sub">Seu comprovante de vacinação para apresentar na unidade de saúde.</p>
+      </div>
+      <div class="busca topo__busca">
+        <span data-icone="busca" data-tamanho="18"></span>
+        <label class="so-leitor" for="busca-topo">Buscar</label>
+        <input class="entrada" id="busca-topo" type="search" placeholder="Buscar vacinas, campanhas...">
+      </div>
+      <span class="avatar">LS</span>
+    </header>
+
+    <main class="conteudo">
+      <div class="grade-2">
+
+        <section class="cartao">
+          <h2 class="cartao__titulo">Comprovante vacinal</h2>
+          <p class="cartao__subtitulo">Validado pela unidade de saúde vinculada ao seu cadastro.</p>
+
+          <div style="margin:24px 0">
+            <div class="qr"><div class="qr__quadro"></div></div>
+          </div>
+
+          <p style="text-align:center;color:var(--texto-med);font-size:14px;max-width:44ch;margin:0 auto 22px">
+            Apresente este código na unidade de saúde para validar seu histórico vacinal.
+          </p>
+
+          <div class="auth__acoes">
+            <button class="btn btn--primario btn--bloco" type="button" data-abrir-modal="modal-comprovante">
+              Baixar comprovante
+            </button>
+            <a class="btn btn--contorno btn--bloco" href="historico.html">Ver histórico completo</a>
+          </div>
+        </section>
+
+        <div style="display:grid;gap:16px">
+
+          <section class="cartao">
+            <h2 class="cartao__titulo">Titular</h2>
+            <ul class="dados">
+              <li><span class="chave">Nome</span><span class="valor">Laurêncio Silva</span></li>
+              <li><span class="chave">CPF</span><span class="valor">123.456.789-90</span></li>
+              <li><span class="chave">Nascimento</span><span class="valor">10/10/2010</span></li>
+              <li><span class="chave">Unidade</span><span class="valor">UBS Central</span></li>
+            </ul>
+          </section>
+
+          <section class="cartao">
+            <h2 class="cartao__titulo">Resumo</h2>
+            <ul class="dados">
+              <li><span class="chave">Doses registradas</span><span class="valor">13</span></li>
+              <li><span class="chave">Vacinas pendentes</span><span class="valor">3</span></li>
+              <li><span class="chave">Última atualização</span><span class="valor">13/09/2026</span></li>
+            </ul>
+          </section>
+
+          <div class="aviso aviso--azul">
+            <span data-icone="info" data-tamanho="20"></span>
+            <span>O comprovante é gerado a partir dos registros da sua unidade de saúde e
+            atualiza sozinho a cada nova dose aplicada.</span>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<nav class="abas" id="abas"></nav>
+
+<div class="modal" id="modal-comprovante" role="dialog" aria-modal="true" aria-labelledby="t-comprovante">
+  <div class="modal__caixa">
+    <div class="modal__selo"><span data-icone="check" data-tamanho="30"></span></div>
+    <h2 class="modal__titulo" id="t-comprovante">Comprovante gerado!</h2>
+    <p class="modal__texto">
+      O arquivo com o seu histórico vacinal está pronto para ser salvo ou impresso.
+    </p>
+    <div class="modal__acoes">
+      <button class="btn btn--primario btn--bloco" type="button" data-fechar-modal>Entendi</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

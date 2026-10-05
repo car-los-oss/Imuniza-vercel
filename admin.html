@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar no painel · Imuniza Admin</title>
+<meta name="description" content="Área restrita do Imuniza. Acesso para profissionais de saúde autorizados.">
+<meta name="theme-color" content="#1b1372">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/auth.css">
+<link rel="stylesheet" href="assets/css/paginas/admin.css">
+</head>
+<body>
+
+<div class="auth">
+
+  <aside class="auth__painel auth__painel--admin">
+    <div class="marca marca--clara">
+      <img class="marca__simbolo" src="assets/img/logo-icone.png" alt="" width="44" height="44">
+      <span class="marca__textos">
+        <span class="marca__nome">imuniza</span>
+        <span class="marca__linha">Painel do administrador</span>
+      </span>
+    </div>
+
+    <div>
+      <h1 class="auth__chamada">Gerencie campanhas e registros vacinais.</h1>
+      <ul class="auth__lista">
+        <li>Envio de eventos e campanhas para a população</li>
+        <li>Cadastro e busca de usuários por CPF</li>
+        <li>Histórico completo de envios realizados</li>
+      </ul>
+    </div>
+
+    <p class="auth__rodape">Acesso restrito a profissionais autorizados.</p>
+  </aside>
+
+  <main class="auth__area">
+    <div class="auth__cartao">
+
+      <div class="auth__marca-mobile">
+        <div class="marca">
+          <img class="marca__simbolo" src="assets/img/logo-icone.png" alt="" width="44" height="44">
+          <span class="marca__textos">
+            <span class="marca__nome">imuniza</span>
+            <span class="marca__linha">Painel do administrador</span>
+          </span>
+        </div>
+      </div>
+
+      <p><span class="etiqueta etiqueta--azul">Área restrita</span></p>
+
+      <h2 class="auth__titulo" style="margin-top:14px">Entrar no painel</h2>
+      <p class="auth__texto">Autentique-se para gerenciar campanhas e cadastros.</p>
+
+      <form data-destino="admin-visao.html" novalidate>
+        <label class="campo">
+          <span class="campo__rotulo">E-mail</span>
+          <input class="entrada" type="email" name="email" placeholder="seuemail@email.com"
+                 autocomplete="username" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">Senha</span>
+          <input class="entrada" type="password" name="senha" placeholder="••••••••"
+                 autocomplete="current-password" required>
+        </label>
+
+        <div class="linha-opcoes">
+          <label class="marcador">
+            <input type="checkbox" name="manter" checked>
+            <i></i>
+            Manter conectado
+          </label>
+          <a class="link" href="#">Esqueci a senha</a>
+        </div>
+
+        <div class="auth__acoes">
+          <button class="btn btn--primario btn--bloco" type="submit">Entrar</button>
+          <a class="btn btn--contorno btn--bloco" href="admin-cadastro-conta.html">Solicitar acesso</a>
+        </div>
+      </form>
+
+      <p class="auth__alternativa">
+        Não é profissional de saúde? <a href="index.html">Voltar para o acesso do usuário</a>
+      </p>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

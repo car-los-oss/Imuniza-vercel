@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Envio de Eventos · Imuniza Admin</title>
+<meta name="description" content="Registre e divulgue um novo evento de vacinação para a população.">
+<meta name="theme-color" content="#1b1372">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/admin-eventos.css">
+</head>
+<body data-area="admin" data-tela="eventos">
+
+<div class="app">
+
+  <aside class="lateral" id="lateral"></aside>
+
+  <div class="principal">
+
+    <header class="topo">
+      <div class="topo__textos">
+        <h1 class="topo__titulo">Envio de Eventos</h1>
+        <p class="topo__sub">Registre e divulgue um novo evento de vacinação.</p>
+      </div>
+      <span class="etiqueta etiqueta--azul">UBS Central</span>
+      <span class="avatar avatar--roxo">AO</span>
+    </header>
+
+    <main class="conteudo">
+      <div class="grade-2">
+
+        <section class="cartao">
+          <h2 class="cartao__titulo" style="margin-bottom:18px">Dados do evento</h2>
+
+          <form id="form-evento" novalidate>
+            <div class="grade-campos">
+
+              <label class="campo">
+                <span class="campo__rotulo">Data do evento</span>
+                <input class="entrada" type="text" inputmode="numeric"
+                       placeholder="dd/mm/aaaa" data-mascara="data" required>
+              </label>
+
+              <label class="campo">
+                <span class="campo__rotulo">Tipo de vacina</span>
+                <select class="entrada" required>
+                  <option value="">Selecione</option>
+                  <option>Gripe</option>
+                  <option>Covid-19</option>
+                  <option>Sarampo</option>
+                  <option>Hepatite B</option>
+                  <option>Febre Amarela</option>
+                  <option>Tétano</option>
+                </select>
+              </label>
+
+              <label class="campo">
+                <span class="campo__rotulo">Dose</span>
+                <select class="entrada" required>
+                  <option value="">Selecione</option>
+                  <option>Dose única</option>
+                  <option>1ª dose</option>
+                  <option>2ª dose</option>
+                  <option>3ª dose</option>
+                  <option>Reforço</option>
+                </select>
+              </label>
+
+              <label class="campo">
+                <span class="campo__rotulo">Lote da vacina</span>
+                <input class="entrada" type="text" placeholder="Ex.: BT1A0023222 4X">
+              </label>
+
+              <label class="campo">
+                <span class="campo__rotulo">Duração</span>
+                <input class="entrada" type="text" placeholder="Ex.: 7 dias de duração">
+              </label>
+
+              <label class="campo">
+                <span class="campo__rotulo">Público-alvo</span>
+                <select class="entrada" required>
+                  <option value="">Selecione</option>
+                  <option>Menores de 1 ano</option>
+                  <option>6 meses a 5 anos</option>
+                  <option>Crianças e adolescentes</option>
+                  <option>Adultos 18+</option>
+                  <option>Adultos 20+</option>
+                  <option>Idosos 60+</option>
+                </select>
+              </label>
+
+              <label class="campo campo--largo">
+                <span class="campo__rotulo">Local de aplicação</span>
+                <input class="entrada" type="text" placeholder="Ex.: UBS Centro">
+              </label>
+
+              <label class="campo campo--largo">
+                <span class="campo__rotulo">Observações</span>
+                <textarea class="entrada" placeholder="Informações adicionais que aparecerão na notificação..."></textarea>
+              </label>
+
+            </div>
+
+            <div class="aviso aviso--azul" style="margin-bottom:20px">
+              <span data-icone="info" data-tamanho="20"></span>
+              <span>Verifique todos os dados antes de enviar o evento.</span>
+            </div>
+
+            <div style="display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap">
+              <button class="btn btn--contorno" type="reset">Cancelar</button>
+              <button class="btn btn--primario" type="button" data-abrir-modal="modal-envio">
+                Enviar evento
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <div style="display:grid;gap:16px">
+
+          <section class="cartao">
+            <h2 class="cartao__titulo" style="margin-bottom:14px">Pré-visualização da notificação</h2>
+            <div class="proxima">
+              <span class="icone-quadro" data-icone="vacina" data-tamanho="20"></span>
+              <div>
+                <b>Campanha de Gripe 2026</b>
+                <span>15/06 a 30/06 · UBS Centro · Público-alvo: 6 meses a 5 anos</span>
+              </div>
+            </div>
+            <p style="color:var(--texto-med);font-size:14px;margin-top:14px">
+              É assim que o evento aparecerá no aplicativo e no site dos usuários notificados.
+            </p>
+          </section>
+
+          <section class="cartao">
+            <h2 class="cartao__titulo">Alcance estimado</h2>
+            <ul class="dados">
+              <li><span class="chave">Usuários notificados</span><span class="valor">1.248</span></li>
+              <li><span class="chave">Unidade</span><span class="valor">UBS Central</span></li>
+              <li><span class="chave">Canal</span><span class="valor">App e e-mail</span></li>
+            </ul>
+          </section>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<nav class="abas" id="abas"></nav>
+
+<div class="modal" id="modal-envio" role="dialog" aria-modal="true" aria-labelledby="t-envio">
+  <div class="modal__caixa">
+    <div class="modal__selo"><span data-icone="check" data-tamanho="30"></span></div>
+    <h2 class="modal__titulo" id="t-envio">Envio feito com sucesso!</h2>
+    <p class="modal__texto">
+      O evento foi registrado e as notificações já estão a caminho dos usuários.
+    </p>
+    <div class="modal__acoes">
+      <a class="btn btn--primario btn--bloco" href="admin-envios.html">Ver no histórico</a>
+      <button class="btn btn--contorno btn--bloco" type="button" data-fechar-modal>Enviar outro evento</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

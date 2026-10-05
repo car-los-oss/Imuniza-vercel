@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visão geral · Imuniza Admin</title>
+<meta name="description" content="Resumo da unidade: cadastros, envios e campanhas em andamento.">
+<meta name="theme-color" content="#1b1372">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/admin-visao.css">
+</head>
+<body data-area="admin" data-tela="visao">
+
+<div class="app">
+
+  <aside class="lateral" id="lateral"></aside>
+
+  <div class="principal">
+
+    <header class="topo">
+      <div class="topo__textos">
+        <h1 class="topo__titulo">Visão geral</h1>
+        <p class="topo__sub">Amélia, este é o resumo da UBS Central.</p>
+      </div>
+      <span class="etiqueta etiqueta--azul">UBS Central</span>
+      <span class="avatar avatar--roxo">AO</span>
+    </header>
+
+    <main class="conteudo">
+
+      <div class="grade-cartoes grade-cartoes--4 grade-cartoes--metricas secao">
+
+        <article class="cartao">
+          <span class="icone-quadro icone-quadro--suave" data-icone="pessoas" data-tamanho="20"></span>
+          <p class="metrica__numero">4.318</p>
+          <p class="metrica__rotulo">Usuários cadastrados</p>
+        </article>
+
+        <article class="cartao">
+          <span class="icone-quadro icone-quadro--suave" data-icone="enviar" data-tamanho="20"></span>
+          <p class="metrica__numero">126</p>
+          <p class="metrica__rotulo">Cadastros neste mês</p>
+        </article>
+
+        <article class="cartao">
+          <span class="icone-quadro icone-quadro--suave" data-icone="historico" data-tamanho="20"></span>
+          <p class="metrica__numero">5</p>
+          <p class="metrica__rotulo">Eventos no período</p>
+        </article>
+
+        <article class="cartao">
+          <span class="icone-quadro icone-quadro--ambar" data-icone="alerta" data-tamanho="20"></span>
+          <p class="metrica__numero">23</p>
+          <p class="metrica__rotulo">Pendências de dados</p>
+        </article>
+
+      </div>
+
+      <div class="grade-2">
+
+        <section class="cartao">
+          <h2 class="cartao__titulo" style="margin-bottom:16px">Campanhas em andamento</h2>
+          <div class="proximas">
+
+            <div class="proxima">
+              <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
+              <div style="flex:1">
+                <b>Campanha de Gripe</b>
+                <span>15/06 a 30/06 · 1.248 notificados</span>
+              </div>
+              <span class="etiqueta etiqueta--verde">Enviado</span>
+            </div>
+
+            <div class="proxima">
+              <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
+              <div style="flex:1">
+                <b>Multivacinação</b>
+                <span>10/09 a 30/09 · 986 notificados</span>
+              </div>
+              <span class="etiqueta etiqueta--verde">Enviado</span>
+            </div>
+
+            <div class="proxima">
+              <span class="icone-quadro icone-quadro--ambar" data-icone="relogio" data-tamanho="20"></span>
+              <div style="flex:1">
+                <b>Reforço de Tétano</b>
+                <span>01/10 a 15/10 · 1.510 previstos</span>
+              </div>
+              <span class="etiqueta etiqueta--ambar">Pendente</span>
+            </div>
+
+          </div>
+
+          <a class="btn btn--contorno btn--bloco" href="admin-envios.html" style="margin-top:18px">
+            Ver histórico completo
+          </a>
+        </section>
+
+        <section class="cartao">
+          <h2 class="cartao__titulo" style="margin-bottom:16px">Ações rápidas</h2>
+          <div class="grade-cartoes">
+
+            <a class="cartao cartao--liso atalho" href="admin-eventos.html">
+              <span class="icone-quadro" data-icone="enviar" data-tamanho="20"></span>
+              <b>Enviar evento</b>
+              <span>Divulgar uma nova campanha</span>
+            </a>
+
+            <a class="cartao cartao--liso atalho" href="admin-cadastro.html">
+              <span class="icone-quadro" data-icone="pessoas" data-tamanho="20"></span>
+              <b>Cadastrar pessoa</b>
+              <span>Registrar um novo usuário</span>
+            </a>
+
+            <a class="cartao cartao--liso atalho" href="admin-envios.html">
+              <span class="icone-quadro" data-icone="historico" data-tamanho="20"></span>
+              <b>Histórico de envios</b>
+              <span>Conferir o que já foi enviado</span>
+            </a>
+
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<nav class="abas" id="abas"></nav>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

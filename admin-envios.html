@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Histórico de Envios · Imuniza Admin</title>
+<meta name="description" content="Confira os eventos de vacinação já enviados e os pendentes.">
+<meta name="theme-color" content="#1b1372">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/admin-envios.css">
+</head>
+<body data-area="admin" data-tela="envios">
+
+<div class="app">
+
+  <aside class="lateral" id="lateral"></aside>
+
+  <div class="principal">
+
+    <header class="topo">
+      <div class="topo__textos">
+        <h1 class="topo__titulo">Histórico de Envios</h1>
+        <p class="topo__sub">Amélia, confira os eventos já enviados e os pendentes.</p>
+      </div>
+      <span class="etiqueta etiqueta--azul">UBS Central</span>
+      <span class="avatar avatar--roxo">AO</span>
+    </header>
+
+    <main class="conteudo">
+
+      <div class="ferramentas">
+        <div class="busca">
+          <span data-icone="busca" data-tamanho="18"></span>
+          <label class="so-leitor" for="busca-envio">Buscar por evento ou vacina</label>
+          <input class="entrada" id="busca-envio" type="search" placeholder="Buscar por evento ou vacina...">
+        </div>
+
+        <label class="so-leitor" for="filtro-status">Filtrar por status</label>
+        <select class="entrada" id="filtro-status">
+          <option value="todos">Status: todos</option>
+          <option value="enviado">Status: enviado</option>
+          <option value="pendente">Status: pendente</option>
+        </select>
+
+        <label class="so-leitor" for="filtro-periodo">Filtrar por período</label>
+        <select class="entrada" id="filtro-periodo">
+          <option>Período: 2026</option>
+          <option>Período: 2025</option>
+          <option>Período: 2024</option>
+        </select>
+
+        <a class="btn btn--primario" href="admin-eventos.html">Novo evento</a>
+      </div>
+
+      <section class="cartao">
+
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <caption class="so-leitor">Eventos de vacinação enviados pela unidade</caption>
+            <thead>
+              <tr>
+                <th scope="col">Evento</th>
+                <th scope="col">Vacina</th>
+                <th scope="col">Período</th>
+                <th scope="col">Público-alvo</th>
+                <th scope="col">Alcance</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="corpo-envios"></tbody>
+          </table>
+        </div>
+
+        <div class="cartoes-tabela" id="cartoes-envios"></div>
+
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<nav class="abas" id="abas"></nav>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Histórico Vacinal · Imuniza</title>
+<meta name="description" content="Confira suas vacinas aplicadas e as doses pendentes.">
+<meta name="theme-color" content="#2e1ae6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/historico.css">
+</head>
+<body data-area="usuario" data-tela="historico">
+
+<div class="app">
+
+  <aside class="lateral" id="lateral"></aside>
+
+  <div class="principal">
+
+    <header class="topo">
+      <div class="topo__textos">
+        <h1 class="topo__titulo">Histórico Vacinal</h1>
+        <p class="topo__sub">Laurêncio, confira suas vacinas aplicadas e pendentes.</p>
+      </div>
+      <div class="busca topo__busca">
+        <span data-icone="busca" data-tamanho="18"></span>
+        <label class="so-leitor" for="busca-topo">Buscar</label>
+        <input class="entrada" id="busca-topo" type="search" placeholder="Buscar vacinas, campanhas...">
+      </div>
+      <span class="avatar">LS</span>
+    </header>
+
+    <main class="conteudo">
+      <div class="grade-2">
+
+        <section class="cartao">
+
+          <div class="busca" style="margin-bottom:16px">
+            <span data-icone="busca" data-tamanho="18"></span>
+            <label class="so-leitor" for="busca-vacina">Buscar vacina</label>
+            <input class="entrada" id="busca-vacina" type="search" placeholder="Buscar vacina...">
+          </div>
+
+          <div class="filtros" id="filtros" role="group" aria-label="Filtrar vacinas">
+            <button class="filtro" type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+            <button class="filtro" type="button" data-filtro="aplicadas" aria-pressed="false">Aplicadas</button>
+            <button class="filtro" type="button" data-filtro="pendentes" aria-pressed="false">Pendentes</button>
+          </div>
+
+          <div id="lista-vacinas">
+
+            <p class="grupo-rotulo" data-rotulo="aplicadas">Aplicadas</p>
+            <div class="lista-vacinas">
+
+              <button class="vacina" type="button" data-vacina="covid" data-grupo="aplicadas" aria-selected="false">
+                <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
+                <span class="vacina__textos">
+                  <span class="vacina__nome">Covid-19</span>
+                  <span class="vacina__meta">2022 · 3 doses</span>
+                </span>
+                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
+              </button>
+
+              <button class="vacina" type="button" data-vacina="gripe" data-grupo="aplicadas" aria-selected="false">
+                <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
+                <span class="vacina__textos">
+                  <span class="vacina__nome">Gripe</span>
+                  <span class="vacina__meta">2024 · dose única</span>
+                </span>
+                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
+              </button>
+
+              <button class="vacina" type="button" data-vacina="sarampo" data-grupo="aplicadas" aria-selected="false">
+                <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
+                <span class="vacina__textos">
+                  <span class="vacina__nome">Sarampo</span>
+                  <span class="vacina__meta">2023 · 2 doses</span>
+                </span>
+                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
+              </button>
+
+              <button class="vacina" type="button" data-vacina="hepatiteb" data-grupo="aplicadas" aria-selected="true">
+                <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
+                <span class="vacina__textos">
+                  <span class="vacina__nome">Hepatite B</span>
+                  <span class="vacina__meta">2025 · 1 de 3 doses</span>
+                </span>
+                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
+              </button>
+
+            </div>
+
+            <p class="grupo-rotulo" data-rotulo="pendentes">Pendentes</p>
+            <div class="lista-vacinas">
+
+              <button class="vacina" type="button" data-vacina="febreamarela" data-grupo="pendentes" aria-selected="false">
+                <span class="icone-quadro icone-quadro--vermelho" data-icone="fechar" data-tamanho="20"></span>
+                <span class="vacina__textos">
+                  <span class="vacina__nome">Febre Amarela</span>
+                  <span class="vacina__meta">Prevista para 2026</span>
+                </span>
+                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
+              </button>
+
+              <button class="vacina" type="button" data-vacina="tetano" data-grupo="pendentes" aria-selected="false">
+                <span class="icone-quadro icone-quadro--vermelho" data-icone="fechar" data-tamanho="20"></span>
+                <span class="vacina__textos">
+                  <span class="vacina__nome">Tétano</span>
+                  <span class="vacina__meta">Reforço vencido em 2026</span>
+                </span>
+                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
+              </button>
+
+            </div>
+
+          </div>
+        </section>
+
+        <section class="detalhe" id="detalhe" aria-live="polite"></section>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<nav class="abas" id="abas"></nav>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

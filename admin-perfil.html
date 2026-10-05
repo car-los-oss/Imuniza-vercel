@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meu Perfil · Imuniza Admin</title>
+<meta name="description" content="Gerencie suas informações e permissões de acesso no painel administrativo.">
+<meta name="theme-color" content="#1b1372">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/admin-perfil.css">
+</head>
+<body data-area="admin" data-tela="meuperfil">
+
+<div class="app">
+
+  <aside class="lateral" id="lateral"></aside>
+
+  <div class="principal">
+
+    <header class="topo">
+      <div class="topo__textos">
+        <h1 class="topo__titulo">Meu Perfil</h1>
+        <p class="topo__sub">Gerencie suas informações e permissões de acesso.</p>
+      </div>
+      <span class="etiqueta etiqueta--azul">UBS Central</span>
+      <span class="avatar avatar--roxo">AO</span>
+    </header>
+
+    <main class="conteudo">
+
+      <section class="cartao secao">
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <span class="avatar avatar--g avatar--roxo">AO</span>
+          <div style="flex:1;min-width:200px">
+            <h2 style="font-size:24px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              Amélia Oliveira
+              <span class="etiqueta etiqueta--azul">Administradora</span>
+            </h2>
+            <div class="contato">
+              <span>ameliaoliveira@email.com</span>
+              <span>(14) 99999-2222</span>
+              <span>CPF 123.456.789-09</span>
+            </div>
+          </div>
+          <button class="btn btn--contorno" type="button" data-abrir-modal="modal-admin-perfil">
+            Editar perfil
+          </button>
+        </div>
+      </section>
+
+      <div class="grade-cartoes grade-cartoes--3 secao">
+
+        <section class="cartao">
+          <h2 class="cartao__titulo">Informações pessoais</h2>
+          <ul class="dados">
+            <li><span class="chave">Data de nascimento</span><span class="valor">10/10/2007</span></li>
+            <li><span class="chave">CPF</span><span class="valor">123.456.789-09</span></li>
+            <li><span class="chave">Sexo</span><span class="valor">Feminino</span></li>
+            <li><span class="chave">Cidade</span><span class="valor">Andradina Cavalcanti — ES</span></li>
+          </ul>
+        </section>
+
+        <section class="cartao">
+          <h2 class="cartao__titulo">Acesso e permissões</h2>
+          <ul class="dados">
+            <li><span class="chave">Perfil de acesso</span><span class="valor">Administrador</span></li>
+            <li><span class="chave">Unidade vinculada</span><span class="valor">UBS Central</span></li>
+            <li><span class="chave">Último acesso</span><span class="valor">13/09/2026 · 09:42</span></li>
+            <li><span class="chave">Situação</span><span class="valor">Ativo</span></li>
+          </ul>
+        </section>
+
+        <section class="cartao">
+          <h2 class="cartao__titulo" style="margin-bottom:16px">Funções de administrador</h2>
+          <div class="proximas">
+
+            <a class="proxima" href="admin-eventos.html">
+              <span class="icone-quadro" data-icone="enviar" data-tamanho="20"></span>
+              <div>
+                <b>Enviar eventos</b>
+                <span>Divulgar campanhas</span>
+              </div>
+            </a>
+
+            <a class="proxima" href="admin-envios.html">
+              <span class="icone-quadro" data-icone="historico" data-tamanho="20"></span>
+              <div>
+                <b>Histórico de envios</b>
+                <span>Conferir o que foi enviado</span>
+              </div>
+            </a>
+
+            <a class="proxima" href="admin-cadastro.html">
+              <span class="icone-quadro" data-icone="pessoas" data-tamanho="20"></span>
+              <div>
+                <b>Cadastrar pessoas</b>
+                <span>Registrar novos usuários</span>
+              </div>
+            </a>
+
+          </div>
+        </section>
+
+      </div>
+
+      <a class="btn btn--perigo" href="admin.html">
+        <span data-icone="sair" data-tamanho="18" style="display:flex"></span>
+        Sair da conta
+      </a>
+
+    </main>
+  </div>
+</div>
+
+<nav class="abas" id="abas"></nav>
+
+<div class="modal" id="modal-admin-perfil" role="dialog" aria-modal="true" aria-labelledby="t-admin-perfil">
+  <div class="modal__caixa" style="max-width:520px;text-align:left">
+    <h2 class="modal__titulo" id="t-admin-perfil" style="text-align:center">Editar perfil</h2>
+    <p class="modal__texto" style="text-align:center">Atualize seus dados de contato.</p>
+
+    <form data-destino="admin-perfil.html" novalidate>
+      <div class="grade-campos">
+        <label class="campo">
+          <span class="campo__rotulo">Nome</span>
+          <input class="entrada" type="text" value="Amélia Oliveira">
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">Telefone</span>
+          <input class="entrada" type="tel" value="(14) 99999-2222">
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">E-mail</span>
+          <input class="entrada" type="email" value="ameliaoliveira@email.com">
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">Unidade vinculada</span>
+          <input class="entrada" type="text" value="UBS Central">
+        </label>
+      </div>
+
+      <div class="modal__acoes" style="margin-top:8px">
+        <button class="btn btn--primario btn--bloco" type="submit">Salvar alterações</button>
+        <button class="btn btn--neutro btn--bloco" type="button" data-fechar-modal>Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

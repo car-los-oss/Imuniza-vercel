@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar · Imuniza</title>
+<meta name="description" content="Imuniza — carteira de vacinação digital. Acesse seu histórico vacinal, calendário de doses e campanhas.">
+<meta name="theme-color" content="#2e1ae6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/auth.css">
+<link rel="stylesheet" href="assets/css/paginas/index.css">
+</head>
+<body>
+
+<div class="auth">
+
+  <aside class="auth__painel">
+    <div class="marca marca--clara">
+      <img class="marca__simbolo" src="assets/img/logo-icone.png" alt="" width="44" height="44">
+      <span class="marca__textos">
+        <span class="marca__nome">imuniza</span>
+        <span class="marca__linha">Carteira de vacinação digital</span>
+      </span>
+    </div>
+
+    <div>
+      <h1 class="auth__chamada">Sua carteira de vacinação, sempre com você.</h1>
+      <ul class="auth__lista">
+        <li>Histórico vacinal completo e sempre acessível</li>
+        <li>Lembretes automáticos de doses e campanhas</li>
+        <li>Sem risco de perder a caderneta de papel</li>
+      </ul>
+    </div>
+
+    <p class="auth__rodape">Seus dados estão protegidos com segurança.</p>
+  </aside>
+
+  <main class="auth__area">
+    <div class="auth__cartao">
+
+      <div class="auth__marca-mobile">
+        <img class="auth__logo" src="assets/img/logo-imuniza.png" alt="Imuniza — Carteira de vacinação digital" width="900" height="641">
+      </div>
+
+      <h2 class="auth__titulo">Entrar</h2>
+      <p class="auth__texto">Acesse sua carteira de vacinação digital.</p>
+
+      <form data-destino="inicio.html" novalidate>
+        <label class="campo">
+          <span class="campo__rotulo">CPF</span>
+          <input class="entrada" type="text" inputmode="numeric" name="cpf"
+                 placeholder="123.456.789-90" data-mascara="cpf" autocomplete="username" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">Senha</span>
+          <input class="entrada" type="password" name="senha"
+                 placeholder="••••••••" autocomplete="current-password" required>
+        </label>
+
+        <div class="linha-opcoes">
+          <label class="marcador">
+            <input type="checkbox" name="manter" checked>
+            <i></i>
+            Manter conectado
+          </label>
+          <a class="link" href="#">Esqueci a senha</a>
+        </div>
+
+        <div class="auth__acoes">
+          <button class="btn btn--primario btn--bloco" type="submit">Entrar</button>
+          <a class="btn btn--contorno btn--bloco" href="cadastro.html">Criar conta</a>
+        </div>
+      </form>
+
+      <p class="auth__alternativa">
+        É profissional de saúde? <a href="admin.html">Entrar como administrador</a>
+      </p>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

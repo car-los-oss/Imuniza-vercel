@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meu Perfil · Imuniza</title>
+<meta name="description" content="Gerencie suas informações pessoais e de saúde no Imuniza.">
+<meta name="theme-color" content="#2e1ae6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/perfil.css">
+</head>
+<body data-area="usuario" data-tela="perfil">
+
+<div class="app">
+
+  <aside class="lateral" id="lateral"></aside>
+
+  <div class="principal">
+
+    <header class="topo">
+      <div class="topo__textos">
+        <h1 class="topo__titulo">Meu Perfil</h1>
+        <p class="topo__sub">Gerencie suas informações pessoais e de saúde.</p>
+      </div>
+      <div class="busca topo__busca">
+        <span data-icone="busca" data-tamanho="18"></span>
+        <label class="so-leitor" for="busca-topo">Buscar</label>
+        <input class="entrada" id="busca-topo" type="search" placeholder="Buscar vacinas, campanhas...">
+      </div>
+      <span class="avatar">LS</span>
+    </header>
+
+    <main class="conteudo">
+
+      <section class="cartao secao">
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <span class="avatar avatar--g">LS</span>
+          <div style="flex:1;min-width:200px">
+            <h2 style="font-size:24px;font-weight:800;letter-spacing:-.01em">Laurêncio Silva</h2>
+            <div class="contato">
+              <span>laurencio@email.com</span>
+              <span>(14) 99999-0000</span>
+              <span>CPF 123.456.789-90</span>
+            </div>
+          </div>
+          <button class="btn btn--contorno" type="button" data-abrir-modal="modal-perfil">
+            Editar perfil
+          </button>
+        </div>
+      </section>
+
+      <div class="grade-cartoes grade-cartoes--3 secao">
+
+        <section class="cartao">
+          <h2 class="cartao__titulo">Informações pessoais</h2>
+          <ul class="dados">
+            <li><span class="chave">Data de nascimento</span><span class="valor">10/10/2010</span></li>
+            <li><span class="chave">Tipo sanguíneo</span><span class="valor">O+</span></li>
+            <li><span class="chave">Sexo</span><span class="valor">Masculino</span></li>
+            <li><span class="chave">Cidade</span><span class="valor">Andradina Cavalcanti — ES</span></li>
+          </ul>
+        </section>
+
+        <section class="cartao">
+          <h2 class="cartao__titulo">Informações de saúde</h2>
+          <ul class="dados">
+            <li><span class="chave">Alergias</span><span class="valor">Penicilina</span></li>
+            <li><span class="chave">Uso contínuo de medicamentos</span><span class="valor">Não informado</span></li>
+            <li><span class="chave">Unidade de saúde</span><span class="valor">UBS Central</span></li>
+            <li><span class="chave">Doador de órgãos</span><span class="valor">Não</span></li>
+          </ul>
+        </section>
+
+        <section class="cartao">
+          <h2 class="cartao__titulo" style="margin-bottom:16px">Carteira digital</h2>
+          <div class="qr"><div class="qr__quadro"></div></div>
+          <p style="color:var(--texto-med);font-size:14px;margin:16px 0 18px">
+            Apresente este código na unidade de saúde para validar seu histórico.
+          </p>
+          <a class="btn btn--contorno btn--bloco" href="carteira.html">Baixar comprovante</a>
+        </section>
+
+      </div>
+
+      <div class="aviso aviso--ambar secao">
+        <span data-icone="alerta" data-tamanho="20"></span>
+        <span>Essas informações podem ser exibidas em situações de emergência.</span>
+      </div>
+
+      <a class="btn btn--perigo" href="index.html">
+        <span data-icone="sair" data-tamanho="18" style="display:flex"></span>
+        Sair da conta
+      </a>
+
+    </main>
+  </div>
+</div>
+
+<nav class="abas" id="abas"></nav>
+
+<div class="modal" id="modal-perfil" role="dialog" aria-modal="true" aria-labelledby="t-perfil">
+  <div class="modal__caixa" style="max-width:520px;text-align:left">
+    <h2 class="modal__titulo" id="t-perfil" style="text-align:center">Editar perfil</h2>
+    <p class="modal__texto" style="text-align:center">Atualize seus dados pessoais e de saúde.</p>
+
+    <form data-destino="perfil.html" novalidate>
+      <div class="grade-campos">
+        <label class="campo">
+          <span class="campo__rotulo">Nome completo</span>
+          <input class="entrada" type="text" value="Laurêncio Silva">
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">Telefone</span>
+          <input class="entrada" type="tel" value="(14) 99999-0000">
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">E-mail</span>
+          <input class="entrada" type="email" value="laurencio@email.com">
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">Cidade</span>
+          <input class="entrada" type="text" value="Andradina Cavalcanti">
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">Alergias</span>
+          <input class="entrada" type="text" value="Penicilina">
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">Unidade de saúde</span>
+          <input class="entrada" type="text" value="UBS Central">
+        </label>
+      </div>
+
+      <div class="modal__acoes" style="margin-top:8px">
+        <button class="btn btn--primario btn--bloco" type="submit">Salvar alterações</button>
+        <button class="btn btn--neutro btn--bloco" type="button" data-fechar-modal>Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início · Imuniza</title>
+<meta name="description" content="Resumo da sua imunização: próxima dose, progresso vacinal e campanhas ativas.">
+<meta name="theme-color" content="#2e1ae6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/inicio.css">
+</head>
+<body data-area="usuario" data-tela="inicio">
+
+<div class="app">
+
+  <aside class="lateral" id="lateral"></aside>
+
+  <div class="principal">
+
+    <header class="topo">
+      <div class="topo__textos">
+        <h1 class="topo__titulo">Olá, Laurêncio</h1>
+        <p class="topo__sub">Que bom te ver por aqui. Veja o resumo da sua imunização.</p>
+      </div>
+      <div class="busca topo__busca">
+        <span data-icone="busca" data-tamanho="18"></span>
+        <label class="so-leitor" for="busca-topo">Buscar</label>
+        <input class="entrada" id="busca-topo" type="search" placeholder="Buscar vacinas, campanhas...">
+      </div>
+      <span class="avatar">LS</span>
+    </header>
+
+    <main class="conteudo">
+
+      <div class="grade-2 secao">
+
+        <section class="destaque">
+          <p class="destaque__rotulo">Próxima vacina</p>
+          <div class="destaque__linha">
+            <span class="destaque__simbolo" data-icone="vacina" data-tamanho="26"></span>
+            <div>
+              <p class="destaque__nome">Hepatite B — 2ª dose</p>
+              <p class="destaque__meta">20/06/2025 &nbsp;·&nbsp; UBS Centro &nbsp;·&nbsp; Lote BTTn40028922</p>
+            </div>
+          </div>
+          <div class="destaque__pe">
+            <span>Faltam 12 dias para a sua próxima dose.</span>
+            <a class="btn btn--claro btn--pequeno" href="historico.html">Ver detalhes</a>
+          </div>
+        </section>
+
+        <section class="cartao">
+          <div class="progresso__topo">
+            <h2 class="cartao__titulo">Progresso vacinal</h2>
+            <span class="progresso__valor">65% completo</span>
+          </div>
+          <div class="barra"><span style="width:65%"></span></div>
+          <div class="progresso__pe">
+            <span>13 de 20 vacinas tomadas</span>
+            <span>Faltam 3 vacinas</span>
+          </div>
+        </section>
+
+      </div>
+
+      <section class="secao">
+        <h2 class="secao__titulo">Campanhas ativas</h2>
+        <div class="grade-cartoes grade-cartoes--3">
+
+          <article class="cartao campanha">
+            <div class="campanha__topo">
+              <span class="icone-quadro icone-quadro--suave" data-icone="escudo" data-tamanho="20"></span>
+              <div>
+                <p class="campanha__nome">Gripe 2025</p>
+                <p class="campanha__data">Até 30/06/2025</p>
+              </div>
+            </div>
+            <p><span class="etiqueta etiqueta--verde">Disponível</span></p>
+          </article>
+
+          <article class="cartao campanha">
+            <div class="campanha__topo">
+              <span class="icone-quadro icone-quadro--suave" data-icone="pessoas" data-tamanho="20"></span>
+              <div>
+                <p class="campanha__nome">Multivacinação</p>
+                <p class="campanha__data">Até 20/06/2025</p>
+              </div>
+            </div>
+            <p><span class="etiqueta etiqueta--verde">Disponível</span></p>
+          </article>
+
+          <article class="cartao campanha">
+            <div class="campanha__topo">
+              <span class="icone-quadro icone-quadro--suave" data-icone="vacina" data-tamanho="20"></span>
+              <div>
+                <p class="campanha__nome">Febre Amarela</p>
+                <p class="campanha__data">Até 10/07/2025</p>
+              </div>
+            </div>
+            <p><span class="etiqueta etiqueta--ambar">Em breve</span></p>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="secao">
+        <h2 class="secao__titulo">Ações rápidas</h2>
+        <div class="grade-cartoes grade-cartoes--4">
+
+          <a class="cartao atalho" href="calendario.html">
+            <span class="icone-quadro" data-icone="calendario" data-tamanho="20"></span>
+            <b>Calendário</b>
+            <span>Ver datas e campanhas</span>
+          </a>
+
+          <a class="cartao atalho" href="historico.html">
+            <span class="icone-quadro" data-icone="historico" data-tamanho="20"></span>
+            <b>Histórico</b>
+            <span>Doses aplicadas e pendentes</span>
+          </a>
+
+          <a class="cartao atalho" href="carteira.html">
+            <span class="icone-quadro" data-icone="carteira" data-tamanho="20"></span>
+            <b>Carteira Digital</b>
+            <span>Comprovante com QR Code</span>
+          </a>
+
+          <a class="cartao atalho" href="perfil.html">
+            <span class="icone-quadro" data-icone="perfil" data-tamanho="20"></span>
+            <b>Meu Perfil</b>
+            <span>Dados pessoais e de saúde</span>
+          </a>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<nav class="abas" id="abas"></nav>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

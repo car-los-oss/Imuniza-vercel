@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calendário Vacinal · Imuniza</title>
+<meta name="description" content="Acompanhe as datas das suas doses e das campanhas de vacinação.">
+<meta name="theme-color" content="#2e1ae6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/calendario.css">
+</head>
+<body data-area="usuario" data-tela="calendario">
+
+<div class="app">
+
+  <aside class="lateral" id="lateral"></aside>
+
+  <div class="principal">
+
+    <header class="topo">
+      <div class="topo__textos">
+        <h1 class="topo__titulo">Calendário Vacinal</h1>
+        <p class="topo__sub">Acompanhe datas de doses e campanhas de vacinação.</p>
+      </div>
+      <div class="busca topo__busca">
+        <span data-icone="busca" data-tamanho="18"></span>
+        <label class="so-leitor" for="busca-topo">Buscar</label>
+        <input class="entrada" id="busca-topo" type="search" placeholder="Buscar vacinas, campanhas...">
+      </div>
+      <span class="avatar">LS</span>
+    </header>
+
+    <main class="conteudo">
+      <div class="grade-2">
+
+        <section class="cartao">
+          <div class="calendario__topo">
+            <h2 class="calendario__mes" id="calendario-mes">Setembro de 2025</h2>
+            <div class="calendario__nav">
+              <button type="button" id="mes-anterior" aria-label="Mês anterior">
+                <span data-icone="seta_esq" data-tamanho="18"></span>
+              </button>
+              <button type="button" id="mes-proximo" aria-label="Próximo mês">
+                <span data-icone="seta_dir" data-tamanho="18"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="calendario__grade" id="calendario"></div>
+
+          <div class="calendario__legenda">
+            <span><i style="background:var(--primaria)"></i> Dose ou campanha agendada</span>
+            <span><i style="background:#d7dce6"></i> Outro mês</span>
+          </div>
+        </section>
+
+        <section class="cartao">
+          <h2 class="cartao__titulo" style="margin-bottom:16px">Campanhas próximas</h2>
+          <div class="proximas">
+
+            <div class="proxima">
+              <span class="icone-quadro" data-icone="calendario" data-tamanho="20"></span>
+              <div>
+                <b>Gripe (campanha)</b>
+                <span>15/06 · UBS Centro</span>
+              </div>
+            </div>
+
+            <div class="proxima">
+              <span class="icone-quadro" data-icone="calendario" data-tamanho="20"></span>
+              <div>
+                <b>Hepatite B — 2ª dose</b>
+                <span>20/06 · UBS Centro</span>
+              </div>
+            </div>
+
+            <div class="proxima">
+              <span class="icone-quadro" data-icone="calendario" data-tamanho="20"></span>
+              <div>
+                <b>Febre Amarela</b>
+                <span>10/07 · UBS Vila Nova</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<nav class="abas" id="abas"></nav>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
