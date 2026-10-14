@@ -1,0 +1,14 @@
+.auth__painel--admin { background: var(--navy); }
+
+.auth__titulo { margin-top: 14px; }
+
+.auth__alternativa {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--borda);
+  text-align: center;
+  font-size: 13px;
+  color: var(--texto-fraco);
+}
+.auth__alternativa a { color: var(--primaria); font-weight: 700; }
+.auth__alternativa a:hover { text-decoration: underline; }

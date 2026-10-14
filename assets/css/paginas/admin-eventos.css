@@ -1,0 +1,11 @@
+.form__titulo { margin-bottom: 18px; }
+
+.form__aviso { margin-bottom: 20px; }
+
+.previa__titulo { margin-bottom: 14px; }
+
+.previa__nota {
+  color: var(--texto-med);
+  font-size: 14px;
+  margin-top: 14px;
+}

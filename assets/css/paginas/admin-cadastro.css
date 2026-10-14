@@ -1,0 +1,7 @@
+.form__titulo { margin-bottom: 18px; }
+.form__titulo--secao { margin-top: 12px; }
+
+.busca-usuario__titulo,
+.busca-usuario__campo { margin-bottom: 14px; }
+
+.busca-usuario__seta { display: flex; color: var(--texto-fraco); }

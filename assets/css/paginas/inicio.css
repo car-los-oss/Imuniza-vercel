@@ -1,0 +1,83 @@
+.secao__titulo {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.destaque {
+  background: var(--primaria);
+  color: #fff;
+  border-radius: var(--r-g);
+  padding: 26px;
+}
+.destaque__rotulo {
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255,255,255,.72);
+  margin-bottom: 14px;
+}
+.destaque__linha { display: flex; align-items: center; gap: 16px; }
+.destaque__nome { font-size: clamp(22px, 2.4vw, 30px); font-weight: 800; letter-spacing: -.01em; }
+.destaque__meta { font-size: 14px; color: rgba(255,255,255,.8); margin-top: 4px; }
+.destaque__pe {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+  font-size: 15px;
+}
+.destaque__simbolo {
+  width: 56px; height: 56px;
+  flex: 0 0 56px;
+  border-radius: 16px;
+  background: #fff;
+  display: grid; place-items: center;
+  color: var(--primaria);
+}
+
+.progresso__topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.progresso__valor { color: var(--primaria); font-weight: 800; }
+.barra {
+  height: 10px;
+  border-radius: 999px;
+  background: #e7eaf3;
+  overflow: hidden;
+}
+.barra span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--primaria);
+}
+.progresso__pe {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: var(--texto-med);
+}
+
+.campanha { display: flex; flex-direction: column; gap: 12px; }
+.campanha__topo { display: flex; align-items: center; gap: 12px; }
+.campanha__nome { font-weight: 700; font-size: 15.5px; }
+.campanha__data { font-size: 13.5px; color: var(--texto-med); }
+
+@media (max-width: 767px) {
+  .destaque { padding: 20px; }
+  .destaque__linha { gap: 13px; }
+  .destaque__simbolo { width: 46px; height: 46px; flex-basis: 46px; border-radius: 13px; }
+  .destaque__pe { align-items: stretch; flex-direction: column; gap: 14px; }
+  .destaque__pe .btn { width: 100%; }
+}

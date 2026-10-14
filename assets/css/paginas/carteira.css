@@ -1,0 +1,13 @@
+.cartao__subtitulo { font-size: 14px; color: var(--texto-med); }
+
+.carteira__qr { margin: 24px 0; }
+
+.carteira__texto {
+  text-align: center;
+  color: var(--texto-med);
+  font-size: 14px;
+  max-width: 44ch;
+  margin: 0 auto 22px;
+}
+
+.carteira__acoes { display: grid; gap: 12px; }

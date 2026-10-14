@@ -1,0 +1,14 @@
+.metrica__numero {
+  font-size: clamp(24px, 7vw, 30px);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin-top: 14px;
+}
+.metrica__rotulo { color: var(--texto-med); font-size: 13.5px; }
+
+.visao__botao { margin-top: 18px; }
+
+@media (max-width: 767px) {
+  .grade-cartoes--metricas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .grade-cartoes--metricas .cartao { padding: 16px 14px; }
+}

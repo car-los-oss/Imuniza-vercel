@@ -1,0 +1,99 @@
+.historico__busca { margin-bottom: 16px; }
+
+.filtros { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.filtro {
+  padding: 9px 18px;
+  border-radius: var(--r-p);
+  border: 0;
+  background: #eef1f6;
+  color: var(--texto-med);
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.filtro[aria-pressed="true"] { background: var(--primaria); color: #fff; }
+
+.grupo-rotulo {
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--texto-fraco);
+  margin: 20px 0 10px;
+}
+.grupo-rotulo:first-child { margin-top: 0; }
+
+.lista-vacinas { display: grid; gap: 10px; }
+
+.vacina {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--branco);
+  border: 1.5px solid var(--borda);
+  border-radius: var(--r-m);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color .15s ease, background .15s ease;
+}
+.vacina:hover { border-color: var(--borda-forte); background: #fafbfd; }
+.vacina[aria-selected="true"] {
+  border-color: var(--primaria);
+  background: var(--primaria-clara);
+}
+.vacina__textos { display: block; flex: 1; min-width: 0; }
+.vacina__nome { display: block; font-weight: 700; font-size: 15.5px; }
+.vacina__meta { display: block; font-size: 13.5px; color: var(--texto-med); }
+.vacina__seta { display: flex; color: var(--texto-fraco); flex: 0 0 auto; }
+
+.detalhe { display: grid; gap: 16px; }
+.detalhe__capa {
+  background: var(--primaria);
+  color: #fff;
+  border-radius: var(--r-g);
+  padding: 22px;
+}
+.detalhe__capa small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255,255,255,.72);
+  margin-bottom: 8px;
+}
+.detalhe__capa b { display: block; font-size: 26px; font-weight: 800; letter-spacing: -.01em; }
+.detalhe__capa span { display: block; font-size: 14px; color: rgba(255,255,255,.82); margin-top: 6px; }
+.detalhe__voltar { display: none; }
+
+@media (max-width: 767px) {
+  .detalhe {
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: var(--fundo);
+    padding: 16px;
+    overflow-y: auto;
+    display: none;
+    align-content: start;
+  }
+  .detalhe.aberto { display: grid; }
+  .detalhe__voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: 0;
+    padding: 6px 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primaria);
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 400px) {
+  .filtro { padding: 8px 14px; font-size: 13.5px; }
+}
