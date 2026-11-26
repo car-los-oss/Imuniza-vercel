@@ -12,6 +12,10 @@ if ($senha === '') {
 
 $admin = consultar('select id, senha_hash from administradores where email = ?', [$email])->fetch();
 
+if ($admin && $admin['senha_hash'] === null) {
+    falhar('Seu acesso foi liberado, mas ainda não foi ativado. Clique em "Ativar acesso" e crie sua senha.', 409, 'email');
+}
+
 if (!$admin || !password_verify($senha, $admin['senha_hash'])) {
     falhar('E-mail ou senha incorretos.', 401);
 }

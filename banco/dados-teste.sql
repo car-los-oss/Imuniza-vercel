@@ -1,16 +1,25 @@
 begin;
 
 delete from eventos where administrador_id in (
-    select id from administradores where cpf = '12345678909' or email = 'ameliaoliveira@email.com'
+    select id from administradores
+    where cpf in ('12345678909', '52998224725') or email in ('ameliaoliveira@email.com', 'bruno.almeida@email.com')
 );
-delete from administradores where cpf = '12345678909' or email = 'ameliaoliveira@email.com';
+delete from administradores where liberado_por in (
+    select id from administradores where cpf = '12345678909' or email = 'ameliaoliveira@email.com'
+) and cpf <> '12345678909';
+delete from administradores
+where cpf in ('12345678909', '52998224725') or email in ('ameliaoliveira@email.com', 'bruno.almeida@email.com');
 delete from usuarios where cpf in ('98765432100', '11144477735', '22255588846')
     or email in ('laurencio@email.com', 'helena.mae@email.com', 'jose.pereira@email.com');
 
-insert into administradores (nome, email, cpf, senha_hash, telefone, data_nascimento, sexo, cidade, uf, unidade_saude) values
+insert into administradores (nome, email, cpf, senha_hash, telefone, data_nascimento, sexo, cidade, uf, unidade_saude, papel) values
     ('Amélia Oliveira', 'ameliaoliveira@email.com', '12345678909',
      '$2y$10$G.BT4JpZgH8S6xNyAGA6Pu5zJL8.QmN5ul8oBJGOJPQEDH/7Th3Yi',
-     '(18) 99999-2222', '1990-10-10', 'Feminino', 'Assis', 'SP', 'UBS Central');
+     '(18) 99999-2222', '1990-10-10', 'Feminino', 'Assis', 'SP', 'UBS Central', 'principal');
+
+insert into administradores (nome, email, cpf, senha_hash, unidade_saude, papel, liberado_por)
+select 'Bruno Almeida', 'bruno.almeida@email.com', '52998224725', null, 'UBS Vila Nova', 'admin', id
+from administradores where cpf = '12345678909';
 
 insert into usuarios (nome, email, cpf, senha_hash, telefone, data_nascimento, tipo_sanguineo, sexo, cidade, uf,
                       alergias, medicamentos_continuos, unidade_saude, doador_orgaos) values

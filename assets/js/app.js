@@ -370,10 +370,13 @@
     topo.insertBefore(botao, topo.firstChild);
   }
 
+  function papelAdmin(a) {
+    var base = a.sexo === "Feminino" ? "Administradora" : "Administrador";
+    return a.papel === "principal" ? base + " principal" : base;
+  }
+
   function mostrarPessoa(area, pessoa) {
-    var detalhe = area === "admin"
-      ? (pessoa.sexo === "Feminino" ? "Administradora" : "Administrador")
-      : "CPF " + cpfBr(pessoa.cpf);
+    var detalhe = area === "admin" ? papelAdmin(pessoa) : "CPF " + cpfBr(pessoa.cpf);
     var sigla = iniciais(pessoa.nome);
     document.querySelectorAll('[data-pessoa="nome"]').forEach(function (el) { el.textContent = pessoa.nome; });
     document.querySelectorAll('[data-pessoa="detalhe"]').forEach(function (el) { el.textContent = detalhe; });
@@ -1249,7 +1252,8 @@
     var campos = {
       "admin-nome": a.nome,
       "admin-avatar": iniciais(a.nome),
-      "admin-papel": a.sexo === "Feminino" ? "Administradora" : "Administrador",
+      "admin-papel": papelAdmin(a),
+      "admin-perfil-acesso": a.papel === "principal" ? "Administrador principal" : "Administrador",
       "admin-email": a.email,
       "admin-telefone": ouNaoInformado(a.telefone),
       "admin-cpf": "CPF " + cpfBr(a.cpf),
@@ -1266,9 +1270,61 @@
     });
   }
 
+  function ligarAdministradores(admin) {
+    var secao = document.getElementById("secao-administradores");
+    var lista = document.getElementById("lista-administradores");
+    var form = document.getElementById("form-liberar");
+    if (!secao || admin.papel !== "principal") return;
+    secao.classList.remove("oculto");
+
+    function carregar() {
+      return api("admin/administradores.php").then(function (r) {
+        lista.innerHTML = r.administradores.map(function (a) {
+          var situacao = a.papel === "principal" ? "Principal" : a.ativo ? "Ativo" : "Aguardando ativação";
+          var cor = a.papel === "principal" ? "azul" : a.ativo ? "verde" : "ambar";
+          var remover = a.papel === "principal" ? "" :
+            '<button class="btn btn--neutro btn--pequeno" type="button" data-remover-admin="' + a.id + '" data-nome="' + esc(a.nome) + '">Remover</button>';
+          return '<div class="proxima">' +
+            '<span class="avatar avatar--roxo">' + esc(iniciais(a.nome)) + '</span>' +
+            '<div style="flex:1"><b>' + esc(a.nome) + '</b><span>' + esc(a.email) + " · CPF " + cpfBr(a.cpf) +
+            (a.unidade_saude ? " · " + esc(a.unidade_saude) : "") + '</span>' +
+            '<span class="etiqueta etiqueta--' + cor + '" style="margin-top:6px;display:inline-flex">' + situacao + '</span></div>' +
+            remover + '</div>';
+        }).join("");
+      });
+    }
+
+    lista.addEventListener("click", function (e) {
+      var botao = e.target.closest("[data-remover-admin]");
+      if (!botao) return;
+      if (!window.confirm("Remover o acesso de " + botao.dataset.nome + "? A pessoa não vai mais conseguir entrar no painel.")) return;
+      botao.disabled = true;
+      api("admin/administradores.php?id=" + botao.dataset.removerAdmin, { metodo: "DELETE" })
+        .then(function (r) {
+          mostrarAviso(form, "Acesso de " + r.removido + " removido.", "verde");
+          return carregar();
+        })
+        .catch(function (erro) {
+          botao.disabled = false;
+          mostrarAviso(form, erro.message);
+        });
+    });
+
+    enviarForm(form, function (dados) {
+      return api("admin/administradores.php", { dados: dados }).then(function (r) {
+        form.reset();
+        mostrarAviso(form, "Acesso liberado para " + r.admin.nome + ". Agora a pessoa entra em “Ativar acesso” com o CPF e o e-mail informados.", "verde");
+        return carregar();
+      });
+    });
+
+    return carregar();
+  }
+
   TELAS.meuperfil = function (admin) {
     var form = document.getElementById("form-admin-perfil");
     mostrarPerfilAdmin(admin);
+    ligarAdministradores(admin);
 
     document.querySelector('[data-abrir-modal="modal-admin-perfil"]').addEventListener("click", function () {
       limparAviso(form);

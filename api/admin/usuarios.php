@@ -41,8 +41,8 @@ if (metodo() === 'GET') {
 
 $nome = obrigatorio('nome', 'Nome completo', 120);
 $cpf = lerCpf();
-$nascimento = lerData('data_nascimento', 'Data de nascimento');
-if ($nascimento !== null && $nascimento > date('Y-m-d')) {
+$nascimento = lerData('data_nascimento', 'Data de nascimento', true);
+if ($nascimento > date('Y-m-d')) {
     falhar('A data de nascimento não pode estar no futuro.', 422, 'data_nascimento');
 }
 $tipo = lerTipoSanguineo();

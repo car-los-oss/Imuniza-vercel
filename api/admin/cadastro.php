@@ -8,35 +8,33 @@ $nome = obrigatorio('nome', 'Nome', 120);
 $email = lerEmail();
 $cpf = lerCpf();
 $senhaHash = lerSenhaNova();
-$unidade = texto('unidade_saude', 120);
 
 if (mb_strlen($nome) < 3) {
     falhar('Informe o nome completo.', 422, 'nome');
 }
 
-if (consultar('select 1 from administradores where cpf = ?', [$cpf])->fetchColumn()) {
-    falhar('Já existe um administrador com este CPF.', 409, 'cpf');
-}
-if (consultar('select 1 from administradores where email = ?', [$email])->fetchColumn()) {
-    falhar('Este e-mail já está em uso.', 409, 'email');
-}
-
 $pdo = conexao();
 $pdo->beginTransaction();
-try {
-    $id = (int) consultar(
-        'insert into administradores (nome, email, cpf, senha_hash, unidade_saude) values (?, ?, ?, ?, ?) returning id',
-        [$nome, $email, $cpf, $senhaHash, $unidade]
-    )->fetchColumn();
-    $sessao = criarSessao('admin', $id, marcado('manter'));
-    $pdo->commit();
-} catch (PDOException $erro) {
+
+$liberado = consultar(
+    'select id, email, senha_hash from administradores where cpf = ? for update',
+    [$cpf]
+)->fetch();
+
+if (!$liberado || $liberado['email'] !== $email) {
     $pdo->rollBack();
-    if (violouUnico($erro)) {
-        falhar('CPF ou e-mail já cadastrado.', 409);
-    }
-    throw $erro;
+    falhar('Este CPF e e-mail não foram liberados. Peça ao administrador principal para liberar o seu acesso com os mesmos dados.', 403);
 }
+
+if ($liberado['senha_hash'] !== null) {
+    $pdo->rollBack();
+    falhar('Este acesso já foi ativado. Use a opção Entrar.', 409, 'cpf');
+}
+
+$id = (int) $liberado['id'];
+consultar('update administradores set nome = ?, senha_hash = ? where id = ?', [$nome, $senhaHash, $id]);
+$sessao = criarSessao('admin', $id, marcado('manter'));
+$pdo->commit();
 
 responder([
     'ok' => true,

@@ -70,7 +70,7 @@
         <section class="cartao">
           <h2 class="cartao__titulo">Acesso e permissões</h2>
           <ul class="dados">
-            <li><span class="chave">Perfil de acesso</span><span class="valor">Administrador</span></li>
+            <li><span class="chave">Perfil de acesso</span><span class="valor" id="admin-perfil-acesso"></span></li>
             <li><span class="chave">Unidade vinculada</span><span class="valor" id="admin-unidade"></span></li>
             <li><span class="chave">Último acesso</span><span class="valor" id="admin-acesso"></span></li>
             <li><span class="chave">Situação</span><span class="valor">Ativo</span></li>
@@ -109,6 +109,35 @@
         </section>
 
       </div>
+
+      <section class="cartao secao oculto" id="secao-administradores">
+        <h2 class="cartao__titulo">Administradores</h2>
+        <p class="cartao__subtitulo" style="margin-bottom:18px">Só quem você liberar aqui consegue ativar uma conta de administrador. A pessoa usa “Ativar acesso” na tela de entrada do painel, com o mesmo CPF e e-mail.</p>
+        <div class="grade-2">
+          <div class="proximas" id="lista-administradores"><p class="lista-vazia">Carregando...</p></div>
+          <form id="form-liberar" novalidate>
+            <div class="grade-campos">
+              <label class="campo campo--largo">
+                <span class="campo__rotulo">Nome</span>
+                <input class="entrada" type="text" name="nome" maxlength="120" placeholder="Ex.: Bruno Almeida" required>
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo">CPF</span>
+                <input class="entrada" type="text" inputmode="numeric" name="cpf" placeholder="000.000.000-00" data-mascara="cpf" required>
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo">E-mail</span>
+                <input class="entrada" type="email" name="email" maxlength="160" placeholder="nome@email.com" required>
+              </label>
+              <label class="campo campo--largo">
+                <span class="campo__rotulo">Unidade de saúde</span>
+                <input class="entrada" type="text" name="unidade_saude" maxlength="120" placeholder="Ex.: UBS Vila Nova">
+              </label>
+            </div>
+            <button class="btn btn--primario btn--bloco" type="submit">Liberar acesso</button>
+          </form>
+        </div>
+      </section>
 
       <a class="btn btn--perigo" href="admin.html" data-sair>
         <span data-icone="sair" data-tamanho="18" style="display:flex"></span>

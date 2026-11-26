@@ -13,7 +13,7 @@ if ($senha === '') {
 $usuario = consultar('select id, senha_hash from usuarios where cpf = ?', [$cpf])->fetch();
 
 if ($usuario && $usuario['senha_hash'] === null) {
-    falhar('Seu cadastro foi feito pela unidade de saúde. Clique em "Criar conta" e use o mesmo CPF para definir sua senha.', 409, 'cpf');
+    falhar('Seu cadastro foi feito pela unidade de saúde. Clique em "Criar conta" com o mesmo CPF e a mesma data de nascimento para definir sua senha.', 409, 'cpf');
 }
 
 if (!$usuario || !password_verify($senha, $usuario['senha_hash'])) {

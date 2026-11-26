@@ -11,6 +11,12 @@ alter table usuarios alter column senha_hash drop not null;
 create index if not exists sessoes_usuario_idx on sessoes (usuario_id);
 create index if not exists sessoes_admin_idx on sessoes (administrador_id);
 
+alter table administradores add column if not exists papel varchar(10) not null default 'admin';
+alter table administradores drop constraint if exists administradores_papel_check;
+alter table administradores add constraint administradores_papel_check check (papel in ('principal', 'admin'));
+alter table administradores add column if not exists liberado_por bigint references administradores (id) on delete set null;
+alter table administradores alter column senha_hash drop not null;
+
 create or replace function imuniza_no_publico(nascimento date, publico text)
 returns boolean
 language sql

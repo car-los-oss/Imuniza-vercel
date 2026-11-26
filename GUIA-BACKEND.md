@@ -1,4 +1,4 @@
-# Imuniza — back-end pronto (25/11)
+# Imuniza — back-end pronto (25/11, atualizado às 21h50)
 
 O back-end está completo: PHP + PostgreSQL (Supabase), com login por token. Todas as 14 telas agora usam dados reais do banco, não há mais nada fixo no HTML.
 
@@ -8,7 +8,7 @@ O back-end está completo: PHP + PostgreSQL (Supabase), com login por token. Tod
 |---|---|
 | `api/base.php` | Conexão, respostas JSON, validações (CPF, datas, e-mail) e login por token |
 | `api/usuario/*.php` | Criar conta, entrar, perfil, resumo do Início, histórico, calendário |
-| `api/admin/*.php` | Criar conta, entrar, perfil, visão geral, envio de eventos, histórico de envios, cadastro e busca, registrar dose, alcance |
+| `api/admin/*.php` | Ativar acesso, entrar, perfil, liberar administradores, visão geral, envio de eventos, histórico de envios, cadastro e busca, registrar dose, alcance |
 | `api/vacinas.php`, `api/sair.php`, `api/teste.php` | Lista de vacinas, sair da conta, teste de conexão |
 | `assets/js/app.js` | Reescrito: liga as telas na API (sem comentários) |
 | `config/config.example.php` | Modelo da configuração local do banco |
@@ -19,10 +19,10 @@ O back-end está completo: PHP + PostgreSQL (Supabase), com login por token. Tod
 
 ## Passo 1 — Banco no Supabase
 
-1. Abra o projeto `imuniza` no Supabase. Se aparecer **Paused**, clique em **Restore** e espere alguns minutos.
+1. Abra o projeto `Imuniza` no Supabase. Se aparecer **Project is paused**, clique em **Resume project** e espere até o status voltar a ficar verde (leva alguns minutos).
 2. Vá em **SQL Editor** → **New query**, cole todo o `banco/atualizacao.sql` e clique em **Run**. Deve aparecer "Success".
 3. Nova query com todo o `banco/dados-teste.sql` → **Run**.
-4. Confira no **Table Editor**: as tabelas `usuarios`, `doses`, `eventos` e `administradores` agora têm dados (pelo menos 3 usuários, 19 doses, 6 eventos e 1 administrador).
+4. Confira no **Table Editor**: as tabelas `usuarios`, `doses`, `eventos` e `administradores` agora têm dados (pelo menos 3 usuários, 19 doses, 6 eventos e 2 administradores). Na `administradores`, a Amélia aparece com `papel` = `principal`.
 
 O `dados-teste.sql` apaga e recria só as contas de teste. Dá para rodar de novo na véspera da apresentação, para as datas ficarem atualizadas.
 
@@ -68,11 +68,16 @@ Senha de todas: `Imuniza@2026`.
 | Laurêncio Silva | CPF `987.654.321-00` | Usuário principal: próxima dose em 10 dias, 1 dose atrasada, campanhas ativas |
 | Helena Costa | CPF `111.444.777-35` | Bebê de 7 meses ("Menores de 1 ano") |
 | José Pereira | CPF `222.555.888-46` | Idoso, cadastro sem tipo sanguíneo (gera "pendência de dados") |
-| Amélia Oliveira (admin) | `ameliaoliveira@email.com` | Administradora da UBS Central |
+| Amélia Oliveira (admin) | `ameliaoliveira@email.com` | Administradora **principal** da UBS Central: é quem libera outros administradores |
+| Bruno Almeida (admin) | `bruno.almeida@email.com`, CPF `529.982.247-25` | Liberado pela Amélia, mas ainda sem senha. Serve para mostrar o "Ativar acesso" na apresentação |
+
+Para "Criar conta" de usuário, agora também é pedida a data de nascimento.
 
 ## Decisões tomadas
 
-- **Pré-cadastro pela UBS**: o admin cadastra a pessoa só com CPF e dados de saúde. Quando a pessoa clica em "Criar conta" com o mesmo CPF, ela define e-mail e senha e já encontra o histórico. Se tentar "Entrar" antes, o site explica o que fazer.
+- **Administradores só com liberação**: existe um administrador principal (a Amélia). Em **Meu perfil**, ele vê a seção **Administradores** e libera uma pessoa informando nome, CPF, e-mail e unidade. Só depois disso a pessoa consegue usar **Ativar acesso**, na tela de entrada do painel, com o mesmo CPF e e-mail, e criar a senha. Quem não foi liberado recebe a mensagem "Este CPF e e-mail não foram liberados". O principal também pode remover o acesso de um administrador comum. Administradores comuns não veem essa seção. Para tornar outra pessoa principal, só pelo SQL Editor: `update administradores set papel = 'principal' where email = 'email@da.pessoa';`
+- **Pré-cadastro protegido pela data de nascimento**: a UBS agora precisa informar a data de nascimento ao cadastrar. Para assumir esse cadastro em "Criar conta", a pessoa precisa digitar a mesma data. Se não bater, aparece "Os dados não conferem com o cadastro feito pela unidade de saúde".
+- **Pré-cadastro pela UBS**: o admin cadastra a pessoa com CPF, data de nascimento e dados de saúde. Quando a pessoa clica em "Criar conta" com o mesmo CPF e a mesma data de nascimento, ela define e-mail e senha e já encontra o histórico. Se tentar "Entrar" antes, o site explica o que fazer.
 - **Registrar dose**: em Cadastro e Busca, clicar numa pessoa abre a ficha com o formulário "Registrar dose aplicada". Se a vacina tem mais doses, a próxima é agendada sozinha (data + intervalo da vacina).
 - **Envio de eventos**: a vacina vem do banco, a duração é em dias (número), ganhou o campo opcional "Nome do evento" e o alcance é calculado pela idade das pessoas cadastradas.
 - **Tipo sanguíneo**: a tela mostra "A−", mas envia "A-", que é o que o banco aceita.
@@ -80,8 +85,6 @@ Senha de todas: `Imuniza@2026`.
 
 ## Limitações (bom saber para a banca)
 
-- Qualquer pessoa consegue criar conta de administrador em "Solicitar acesso". Num sistema real, isso passaria por aprovação.
-- O pré-cadastro é assumido por quem souber o CPF. Num sistema real, pediria também a data de nascimento ou um código da UBS.
 - "Esqueci a senha" só orienta a procurar a unidade, porque o sistema não envia e-mail.
 - O QR Code da carteira continua ilustrativo.
 
@@ -90,4 +93,6 @@ Senha de todas: `Imuniza@2026`.
 - Todos os endpoints testados com dados certos e errados (CPF inválido, e-mail repetido, senha curta, data no passado, token de usuário em rota de admin etc.).
 - As 14 telas abertas num navegador automático, no tamanho desktop e no celular, sem nenhum erro de JavaScript.
 - Fluxos completos: criar conta de admin → cadastrar pessoa → registrar dose → a pessoa cria a conta → vê a próxima dose no Início → edita o perfil → sai.
+- Liberação de administradores: ativar sem liberação é recusado, o principal libera e remove, o administrador comum não consegue liberar (nem pela API) e a pessoa liberada ativa e entra.
+- Pré-cadastro: tentar assumir com a data de nascimento errada é recusado; com a data certa, entra.
 - A imagem Docker (a mesma que o Render vai usar) foi construída e testada com o Apache.

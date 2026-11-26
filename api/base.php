@@ -363,6 +363,16 @@ function exigirAdmin(): int
     return (int) $sessao['administrador_id'];
 }
 
+function exigirPrincipal(): int
+{
+    $id = exigirAdmin();
+    $papel = consultar('select papel from administradores where id = ?', [$id])->fetchColumn();
+    if ($papel !== 'principal') {
+        falhar('Só o administrador principal pode fazer isso.', 403);
+    }
+    return $id;
+}
+
 function buscarUsuario(int $id): ?array
 {
     $usuario = consultar(
@@ -384,7 +394,8 @@ function buscarUsuario(int $id): ?array
 function buscarAdmin(int $id): ?array
 {
     $admin = consultar(
-        'select id, nome, email, cpf, telefone, data_nascimento, sexo, cidade, uf, unidade_saude, criado_em
+        'select id, nome, email, cpf, telefone, data_nascimento, sexo, cidade, uf, unidade_saude, papel,
+                senha_hash is not null as ativo, criado_em
          from administradores where id = ?',
         [$id]
     )->fetch();
@@ -392,6 +403,7 @@ function buscarAdmin(int $id): ?array
         return null;
     }
     $admin['id'] = (int) $admin['id'];
+    $admin['ativo'] = (bool) $admin['ativo'];
     return $admin;
 }
 
