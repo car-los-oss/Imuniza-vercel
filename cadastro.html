@@ -50,7 +50,7 @@
       <h2 class="auth__titulo">Criar conta</h2>
       <p class="auth__texto">Preencha seus dados para começar a usar o Imuniza.</p>
 
-      <form data-destino="inicio.html" novalidate>
+      <form data-acesso="cadastro" novalidate>
         <label class="campo">
           <span class="campo__rotulo">Nome completo</span>
           <input class="entrada" type="text" name="nome" placeholder="Laurêncio Silva Silva"
@@ -66,12 +66,18 @@
         <label class="campo">
           <span class="campo__rotulo">CPF</span>
           <input class="entrada" type="text" inputmode="numeric" name="cpf"
-                 placeholder="123.456.789-90" data-mascara="cpf" required>
+                 placeholder="000.000.000-00" data-mascara="cpf" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">Data de nascimento</span>
+          <input class="entrada" type="text" inputmode="numeric" name="data_nascimento"
+                 placeholder="dd/mm/aaaa" data-mascara="data" autocomplete="bday" required>
         </label>
 
         <label class="campo">
           <span class="campo__rotulo">Senha</span>
-          <input class="entrada" type="password" name="senha" placeholder="••••••••"
+          <input class="entrada" type="password" name="senha" placeholder="Mínimo de 8 caracteres"
                  autocomplete="new-password" required>
         </label>
 
@@ -87,7 +93,7 @@
             <i></i>
             Manter conectado
           </label>
-          <a class="link" href="#">Esqueci a senha</a>
+          <a class="link" href="#" data-esqueci>Esqueci a senha</a>
         </div>
 
         <div class="auth__acoes">

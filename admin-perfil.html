@@ -29,24 +29,24 @@
         <h1 class="topo__titulo">Meu Perfil</h1>
         <p class="topo__sub">Gerencie suas informações e permissões de acesso.</p>
       </div>
-      <span class="etiqueta etiqueta--azul">UBS Central</span>
-      <span class="avatar avatar--roxo">AO</span>
+      <span class="etiqueta etiqueta--azul oculto" data-unidade></span>
+      <span class="avatar avatar--roxo"></span>
     </header>
 
     <main class="conteudo">
 
       <section class="cartao secao">
         <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-          <span class="avatar avatar--g avatar--roxo">AO</span>
+          <span class="avatar avatar--g avatar--roxo" id="admin-avatar"></span>
           <div style="flex:1;min-width:200px">
             <h2 style="font-size:24px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-              Amélia Oliveira
-              <span class="etiqueta etiqueta--azul">Administradora</span>
+                            <span id="admin-nome">Carregando...</span>
+              <span class="etiqueta etiqueta--azul" id="admin-papel">Administrador</span>
             </h2>
             <div class="contato">
-              <span>ameliaoliveira@email.com</span>
-              <span>(14) 99999-2222</span>
-              <span>CPF 123.456.789-09</span>
+              <span id="admin-email"></span>
+              <span id="admin-telefone"></span>
+              <span id="admin-cpf"></span>
             </div>
           </div>
           <button class="btn btn--contorno" type="button" data-abrir-modal="modal-admin-perfil">
@@ -60,19 +60,19 @@
         <section class="cartao">
           <h2 class="cartao__titulo">Informações pessoais</h2>
           <ul class="dados">
-            <li><span class="chave">Data de nascimento</span><span class="valor">10/10/2007</span></li>
-            <li><span class="chave">CPF</span><span class="valor">123.456.789-09</span></li>
-            <li><span class="chave">Sexo</span><span class="valor">Feminino</span></li>
-            <li><span class="chave">Cidade</span><span class="valor">Andradina Cavalcanti — ES</span></li>
+            <li><span class="chave">Data de nascimento</span><span class="valor" id="admin-nascimento"></span></li>
+            <li><span class="chave">CPF</span><span class="valor" id="admin-cpf2"></span></li>
+            <li><span class="chave">Sexo</span><span class="valor" id="admin-sexo"></span></li>
+            <li><span class="chave">Cidade</span><span class="valor" id="admin-cidade"></span></li>
           </ul>
         </section>
 
         <section class="cartao">
           <h2 class="cartao__titulo">Acesso e permissões</h2>
           <ul class="dados">
-            <li><span class="chave">Perfil de acesso</span><span class="valor">Administrador</span></li>
-            <li><span class="chave">Unidade vinculada</span><span class="valor">UBS Central</span></li>
-            <li><span class="chave">Último acesso</span><span class="valor">13/09/2026 · 09:42</span></li>
+            <li><span class="chave">Perfil de acesso</span><span class="valor" id="admin-perfil-acesso"></span></li>
+            <li><span class="chave">Unidade vinculada</span><span class="valor" id="admin-unidade"></span></li>
+            <li><span class="chave">Último acesso</span><span class="valor" id="admin-acesso"></span></li>
             <li><span class="chave">Situação</span><span class="valor">Ativo</span></li>
           </ul>
         </section>
@@ -110,7 +110,36 @@
 
       </div>
 
-      <a class="btn btn--perigo" href="admin.html">
+      <section class="cartao secao oculto" id="secao-administradores">
+        <h2 class="cartao__titulo">Administradores</h2>
+        <p class="cartao__subtitulo" style="margin-bottom:18px">Só quem você liberar aqui consegue ativar uma conta de administrador. A pessoa usa “Ativar acesso” na tela de entrada do painel, com o mesmo CPF e e-mail.</p>
+        <div class="grade-2">
+          <div class="proximas" id="lista-administradores"><p class="lista-vazia">Carregando...</p></div>
+          <form id="form-liberar" novalidate>
+            <div class="grade-campos">
+              <label class="campo campo--largo">
+                <span class="campo__rotulo">Nome</span>
+                <input class="entrada" type="text" name="nome" maxlength="120" placeholder="Ex.: Bruno Almeida" required>
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo">CPF</span>
+                <input class="entrada" type="text" inputmode="numeric" name="cpf" placeholder="000.000.000-00" data-mascara="cpf" required>
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo">E-mail</span>
+                <input class="entrada" type="email" name="email" maxlength="160" placeholder="nome@email.com" required>
+              </label>
+              <label class="campo campo--largo">
+                <span class="campo__rotulo">Unidade de saúde</span>
+                <input class="entrada" type="text" name="unidade_saude" maxlength="120" placeholder="Ex.: UBS Vila Nova">
+              </label>
+            </div>
+            <button class="btn btn--primario btn--bloco" type="submit">Liberar acesso</button>
+          </form>
+        </div>
+      </section>
+
+      <a class="btn btn--perigo" href="admin.html" data-sair>
         <span data-icone="sair" data-tamanho="18" style="display:flex"></span>
         Sair da conta
       </a>
@@ -126,23 +155,23 @@
     <h2 class="modal__titulo" id="t-admin-perfil" style="text-align:center">Editar perfil</h2>
     <p class="modal__texto" style="text-align:center">Atualize seus dados de contato.</p>
 
-    <form data-destino="admin-perfil.html" novalidate>
+    <form id="form-admin-perfil" novalidate>
       <div class="grade-campos">
         <label class="campo">
           <span class="campo__rotulo">Nome</span>
-          <input class="entrada" type="text" value="Amélia Oliveira">
+          <input class="entrada" type="text" name="nome" required>
         </label>
         <label class="campo">
           <span class="campo__rotulo">Telefone</span>
-          <input class="entrada" type="tel" value="(14) 99999-2222">
+          <input class="entrada" type="tel" name="telefone" data-mascara="telefone">
         </label>
         <label class="campo">
           <span class="campo__rotulo">E-mail</span>
-          <input class="entrada" type="email" value="ameliaoliveira@email.com">
+          <input class="entrada" type="email" name="email" required>
         </label>
         <label class="campo">
           <span class="campo__rotulo">Unidade vinculada</span>
-          <input class="entrada" type="text" value="UBS Central">
+          <input class="entrada" type="text" name="unidade_saude">
         </label>
       </div>
 

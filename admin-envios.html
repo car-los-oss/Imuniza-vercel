@@ -27,10 +27,10 @@
     <header class="topo">
       <div class="topo__textos">
         <h1 class="topo__titulo">Histórico de Envios</h1>
-        <p class="topo__sub">Amélia, confira os eventos já enviados e os pendentes.</p>
+        <p class="topo__sub"><span data-primeiro-nome></span>, confira os eventos já enviados e os pendentes.</p>
       </div>
-      <span class="etiqueta etiqueta--azul">UBS Central</span>
-      <span class="avatar avatar--roxo">AO</span>
+      <span class="etiqueta etiqueta--azul oculto" data-unidade></span>
+      <span class="avatar avatar--roxo"></span>
     </header>
 
     <main class="conteudo">
@@ -51,9 +51,7 @@
 
         <label class="so-leitor" for="filtro-periodo">Filtrar por período</label>
         <select class="entrada" id="filtro-periodo">
-          <option>Período: 2026</option>
-          <option>Período: 2025</option>
-          <option>Período: 2024</option>
+          <option value="todos">Período: todos</option>
         </select>
 
         <a class="btn btn--primario" href="admin-eventos.html">Novo evento</a>

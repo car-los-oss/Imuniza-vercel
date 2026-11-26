@@ -4,3 +4,4 @@
   gap: 12px;
   flex-wrap: wrap;
 }
+.cartao__subtitulo { font-size: 14px; color: var(--texto-med); }

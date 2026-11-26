@@ -56,10 +56,10 @@
 
       <p><span class="etiqueta etiqueta--azul">Área restrita</span></p>
 
-      <h2 class="auth__titulo" style="margin-top:14px">Criar conta de administrador</h2>
-      <p class="auth__texto">Informe os dados do profissional responsável.</p>
+      <h2 class="auth__titulo" style="margin-top:14px">Ativar acesso de administrador</h2>
+      <p class="auth__texto">Seu acesso precisa ter sido liberado pelo administrador principal. Use o mesmo CPF e e-mail que você passou para ele e crie sua senha.</p>
 
-      <form data-destino="admin-visao.html" novalidate>
+      <form data-acesso="admin-cadastro" novalidate>
         <label class="campo">
           <span class="campo__rotulo">Nome</span>
           <input class="entrada" type="text" name="nome" placeholder="Amélia Oliveira"
@@ -75,12 +75,12 @@
         <label class="campo">
           <span class="campo__rotulo">CPF</span>
           <input class="entrada" type="text" inputmode="numeric" name="cpf"
-                 placeholder="123.456.789-09" data-mascara="cpf" required>
+                 placeholder="000.000.000-00" data-mascara="cpf" required>
         </label>
 
-        <label class="campo">
+                <label class="campo">
           <span class="campo__rotulo">Senha</span>
-          <input class="entrada" type="password" name="senha" placeholder="••••••••"
+          <input class="entrada" type="password" name="senha" placeholder="Mínimo de 8 caracteres"
                  autocomplete="new-password" required>
         </label>
 
@@ -96,11 +96,11 @@
             <i></i>
             Manter conectado
           </label>
-          <a class="link" href="#">Esqueci a senha</a>
+          <a class="link" href="#" data-esqueci>Esqueci a senha</a>
         </div>
 
         <div class="auth__acoes">
-          <button class="btn btn--primario btn--bloco" type="submit">Cadastrar</button>
+          <button class="btn btn--primario btn--bloco" type="submit">Ativar acesso</button>
           <a class="btn btn--contorno btn--bloco" href="admin.html">Já tenho acesso</a>
         </div>
       </form>

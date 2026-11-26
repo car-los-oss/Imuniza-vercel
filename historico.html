@@ -27,14 +27,14 @@
     <header class="topo">
       <div class="topo__textos">
         <h1 class="topo__titulo">Histórico Vacinal</h1>
-        <p class="topo__sub">Laurêncio, confira suas vacinas aplicadas e pendentes.</p>
+        <p class="topo__sub"><span data-primeiro-nome></span>, confira suas vacinas aplicadas e pendentes.</p>
       </div>
       <div class="busca topo__busca">
         <span data-icone="busca" data-tamanho="18"></span>
         <label class="so-leitor" for="busca-topo">Buscar</label>
         <input class="entrada" id="busca-topo" type="search" placeholder="Buscar vacinas, campanhas...">
       </div>
-      <span class="avatar">LS</span>
+      <span class="avatar"></span>
     </header>
 
     <main class="conteudo">
@@ -54,73 +54,7 @@
             <button class="filtro" type="button" data-filtro="pendentes" aria-pressed="false">Pendentes</button>
           </div>
 
-          <div id="lista-vacinas">
-
-            <p class="grupo-rotulo" data-rotulo="aplicadas">Aplicadas</p>
-            <div class="lista-vacinas">
-
-              <button class="vacina" type="button" data-vacina="covid" data-grupo="aplicadas" aria-selected="false">
-                <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
-                <span class="vacina__textos">
-                  <span class="vacina__nome">Covid-19</span>
-                  <span class="vacina__meta">2022 · 3 doses</span>
-                </span>
-                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
-              </button>
-
-              <button class="vacina" type="button" data-vacina="gripe" data-grupo="aplicadas" aria-selected="false">
-                <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
-                <span class="vacina__textos">
-                  <span class="vacina__nome">Gripe</span>
-                  <span class="vacina__meta">2024 · dose única</span>
-                </span>
-                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
-              </button>
-
-              <button class="vacina" type="button" data-vacina="sarampo" data-grupo="aplicadas" aria-selected="false">
-                <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
-                <span class="vacina__textos">
-                  <span class="vacina__nome">Sarampo</span>
-                  <span class="vacina__meta">2023 · 2 doses</span>
-                </span>
-                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
-              </button>
-
-              <button class="vacina" type="button" data-vacina="hepatiteb" data-grupo="aplicadas" aria-selected="true">
-                <span class="icone-quadro icone-quadro--verde" data-icone="check" data-tamanho="20"></span>
-                <span class="vacina__textos">
-                  <span class="vacina__nome">Hepatite B</span>
-                  <span class="vacina__meta">2025 · 1 de 3 doses</span>
-                </span>
-                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
-              </button>
-
-            </div>
-
-            <p class="grupo-rotulo" data-rotulo="pendentes">Pendentes</p>
-            <div class="lista-vacinas">
-
-              <button class="vacina" type="button" data-vacina="febreamarela" data-grupo="pendentes" aria-selected="false">
-                <span class="icone-quadro icone-quadro--vermelho" data-icone="fechar" data-tamanho="20"></span>
-                <span class="vacina__textos">
-                  <span class="vacina__nome">Febre Amarela</span>
-                  <span class="vacina__meta">Prevista para 2026</span>
-                </span>
-                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
-              </button>
-
-              <button class="vacina" type="button" data-vacina="tetano" data-grupo="pendentes" aria-selected="false">
-                <span class="icone-quadro icone-quadro--vermelho" data-icone="fechar" data-tamanho="20"></span>
-                <span class="vacina__textos">
-                  <span class="vacina__nome">Tétano</span>
-                  <span class="vacina__meta">Reforço vencido em 2026</span>
-                </span>
-                <span class="vacina__seta" data-icone="seta_dir" data-tamanho="18"></span>
-              </button>
-
-            </div>
-
-          </div>
+          <div id="lista-vacinas"><p class="lista-vazia">Carregando...</p></div>
         </section>
 
         <section class="detalhe" id="detalhe" aria-live="polite"></section>

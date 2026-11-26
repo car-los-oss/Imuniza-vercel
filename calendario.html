@@ -34,7 +34,7 @@
         <label class="so-leitor" for="busca-topo">Buscar</label>
         <input class="entrada" id="busca-topo" type="search" placeholder="Buscar vacinas, campanhas...">
       </div>
-      <span class="avatar">LS</span>
+      <span class="avatar"></span>
     </header>
 
     <main class="conteudo">
@@ -42,7 +42,7 @@
 
         <section class="cartao">
           <div class="calendario__topo">
-            <h2 class="calendario__mes" id="calendario-mes">Setembro de 2025</h2>
+            <h2 class="calendario__mes" id="calendario-mes"></h2>
             <div class="calendario__nav">
               <button type="button" id="mes-anterior" aria-label="Mês anterior">
                 <span data-icone="seta_esq" data-tamanho="18"></span>
@@ -62,34 +62,8 @@
         </section>
 
         <section class="cartao">
-          <h2 class="cartao__titulo" style="margin-bottom:16px">Campanhas próximas</h2>
-          <div class="proximas">
-
-            <div class="proxima">
-              <span class="icone-quadro" data-icone="calendario" data-tamanho="20"></span>
-              <div>
-                <b>Gripe (campanha)</b>
-                <span>15/06 · UBS Centro</span>
-              </div>
-            </div>
-
-            <div class="proxima">
-              <span class="icone-quadro" data-icone="calendario" data-tamanho="20"></span>
-              <div>
-                <b>Hepatite B — 2ª dose</b>
-                <span>20/06 · UBS Centro</span>
-              </div>
-            </div>
-
-            <div class="proxima">
-              <span class="icone-quadro" data-icone="calendario" data-tamanho="20"></span>
-              <div>
-                <b>Febre Amarela</b>
-                <span>10/07 · UBS Vila Nova</span>
-              </div>
-            </div>
-
-          </div>
+          <h2 class="cartao__titulo" style="margin-bottom:16px">Próximas datas</h2>
+          <div class="proximas" id="lista-proximas"></div>
         </section>
 
       </div>
