@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esqueci a senha · Imuniza</title>
+<meta name="description" content="Crie uma nova senha para a sua carteira de vacinação digital.">
+<meta name="theme-color" content="#2e1ae6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+
+<div class="auth">
+
+  <aside class="auth__painel">
+    <div class="marca marca--clara">
+      <img class="marca__simbolo" src="assets/img/logo-icone.png" alt="" width="44" height="44">
+      <span class="marca__textos">
+        <span class="marca__nome">imuniza</span>
+        <span class="marca__linha">Carteira de vacinação digital</span>
+      </span>
+    </div>
+
+    <div>
+      <h1 class="auth__chamada">Recupere o acesso à sua carteira.</h1>
+      <ul class="auth__lista">
+        <li>Peça o código na sua unidade de saúde</li>
+        <li>Leve um documento com foto</li>
+        <li>O código vale por 24 horas</li>
+      </ul>
+    </div>
+
+    <p class="auth__rodape">Seus dados estão protegidos com segurança.</p>
+  </aside>
+
+  <main class="auth__area">
+    <div class="auth__cartao">
+
+      <div class="auth__marca-mobile">
+        <img class="auth__logo" src="assets/img/logo-imuniza.png" alt="Imuniza — Carteira de vacinação digital" width="900" height="641">
+      </div>
+
+      <h2 class="auth__titulo">Esqueci a senha</h2>
+      <p class="auth__texto">Peça na sua unidade de saúde um código para trocar a senha. Depois, preencha os campos abaixo.</p>
+
+      <form data-acesso="redefinir" novalidate>
+        <label class="campo">
+          <span class="campo__rotulo">CPF</span>
+          <input class="entrada" type="text" inputmode="numeric" name="cpf"
+                 placeholder="000.000.000-00" data-mascara="cpf" autocomplete="username" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">Código recebido</span>
+          <input class="entrada" type="text" name="codigo" placeholder="XXXX-XXXX" maxlength="9"
+                 autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">Nova senha</span>
+          <input class="entrada" type="password" name="senha" placeholder="Mínimo de 8 caracteres"
+                 autocomplete="new-password" required>
+        </label>
+
+        <label class="campo">
+          <span class="campo__rotulo">Confirmar nova senha</span>
+          <input class="entrada" type="password" name="senha2" placeholder="••••••••"
+                 autocomplete="new-password" required>
+        </label>
+
+        <div class="auth__acoes">
+          <button class="btn btn--primario btn--bloco" type="submit">Salvar nova senha</button>
+          <a class="btn btn--contorno btn--bloco" href="index.html">Voltar para o login</a>
+        </div>
+      </form>
+
+    </div>
+  </main>
+
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

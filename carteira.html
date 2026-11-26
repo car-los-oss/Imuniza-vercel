@@ -45,19 +45,23 @@
           <p class="cartao__subtitulo">Validado pela unidade de saúde vinculada ao seu cadastro.</p>
 
           <div style="margin:24px 0">
-            <div class="qr"><div class="qr__quadro"></div></div>
+            <div class="qr" id="qr-carteira" role="img" aria-label="QR Code do comprovante de vacinação"><div class="qr__quadro"></div></div>
           </div>
 
           <p style="text-align:center;color:var(--texto-med);font-size:14px;max-width:44ch;margin:0 auto 22px">
             Apresente este código na unidade de saúde para validar seu histórico vacinal.
           </p>
 
-          <div class="auth__acoes">
-            <button class="btn btn--primario btn--bloco" type="button" data-abrir-modal="modal-comprovante">
+          <div class="carteira__acoes">
+            <a class="btn btn--primario btn--bloco" id="link-comprovante" href="#" target="_blank" rel="noopener">
               Baixar comprovante
-            </button>
+            </a>
             <a class="btn btn--contorno btn--bloco" href="historico.html">Ver histórico completo</a>
           </div>
+
+          <p style="text-align:center;margin-top:18px">
+            <button class="link" type="button" id="trocar-codigo">Trocar código do QR</button>
+          </p>
         </section>
 
         <div style="display:grid;gap:16px">
@@ -84,7 +88,8 @@
           <div class="aviso aviso--azul">
             <span data-icone="info" data-tamanho="20"></span>
             <span>O comprovante é gerado a partir dos registros da sua unidade de saúde e
-            atualiza sozinho a cada nova dose aplicada.</span>
+            atualiza sozinho a cada nova dose aplicada. Quem escanear o QR Code vê o nome e as doses
+            aplicadas; se ele cair em mãos erradas, use “Trocar código do QR”.</span>
           </div>
 
         </div>
@@ -96,19 +101,7 @@
 
 <nav class="abas" id="abas"></nav>
 
-<div class="modal" id="modal-comprovante" role="dialog" aria-modal="true" aria-labelledby="t-comprovante">
-  <div class="modal__caixa">
-    <div class="modal__selo"><span data-icone="check" data-tamanho="30"></span></div>
-    <h2 class="modal__titulo" id="t-comprovante">Comprovante gerado!</h2>
-    <p class="modal__texto">
-      O arquivo com o seu histórico vacinal está pronto para ser salvo ou impresso.
-    </p>
-    <div class="modal__acoes">
-      <button class="btn btn--primario btn--bloco" type="button" data-fechar-modal>Entendi</button>
-    </div>
-  </div>
-</div>
-
+<script src="assets/js/qrcode.min.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
 </html>

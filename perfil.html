@@ -80,7 +80,7 @@
 
         <section class="cartao">
           <h2 class="cartao__titulo" style="margin-bottom:16px">Carteira digital</h2>
-          <div class="qr"><div class="qr__quadro"></div></div>
+          <div class="qr" id="qr-perfil" role="img" aria-label="QR Code do comprovante de vacinação"><div class="qr__quadro"></div></div>
           <p style="color:var(--texto-med);font-size:14px;margin:16px 0 18px">
             Apresente este código na unidade de saúde para validar seu histórico.
           </p>
@@ -146,6 +146,7 @@
   </div>
 </div>
 
+<script src="assets/js/qrcode.min.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
 </html>

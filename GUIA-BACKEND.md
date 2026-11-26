@@ -1,4 +1,6 @@
-# Imuniza — back-end pronto (25/11, atualizado às 21h50)
+# Imuniza — back-end pronto (25/11, atualizado às 23h50)
+
+**Publicado em:** https://imuniza-vercel.onrender.com (Render, região Virginia, plano Free), ligado ao Supabase `Imuniza` (`ecutrhfnsvilegatygec`). Código na `main` do GitHub (PR #1). A senha do banco fica só nas variáveis de ambiente do Render e no `config.php` de cada computador.
 
 O back-end está completo: PHP + PostgreSQL (Supabase), com login por token. Todas as 14 telas agora usam dados reais do banco, não há mais nada fixo no HTML.
 
@@ -8,12 +10,12 @@ O back-end está completo: PHP + PostgreSQL (Supabase), com login por token. Tod
 |---|---|
 | `api/base.php` | Conexão, respostas JSON, validações (CPF, datas, e-mail) e login por token |
 | `api/usuario/*.php` | Criar conta, entrar, perfil, resumo do Início, histórico, calendário |
-| `api/admin/*.php` | Ativar acesso, entrar, perfil, liberar administradores, visão geral, envio de eventos, histórico de envios, cadastro e busca, registrar dose, alcance |
-| `api/vacinas.php`, `api/sair.php`, `api/teste.php` | Lista de vacinas, sair da conta, teste de conexão |
+| `api/admin/*.php` | Ativar acesso, entrar, perfil, liberar administradores, gerar código de senha, visão geral, envio de eventos, histórico de envios, cadastro e busca, registrar dose, alcance |
+| `api/vacinas.php`, `api/sair.php`, `api/teste.php`, `api/carteira.php`, `api/redefinir.php` | Lista de vacinas, sair da conta, teste de conexão, comprovante público do QR, troca de senha com código |
 | `assets/js/app.js` | Reescrito: liga as telas na API (sem comentários) |
 | `config/config.example.php` | Modelo da configuração local do banco |
 | `banco/schema.sql` | As tabelas (já rodado no Supabase em 26/10, não precisa rodar de novo) |
-| `banco/atualizacao.sql` | Ajustes que as telas precisam. Pode rodar mais de uma vez |
+| `banco/atualizacao.sql` | Ajustes que as telas precisam. Pode rodar mais de uma vez (rodar de novo sempre que vier uma versão nova) |
 | `banco/dados-teste.sql` | Contas e dados de teste com datas relativas ao dia em que rodar |
 | `Dockerfile`, `.dockerignore`, `.htaccess`, `.gitignore` | Publicação no Render e proteção das pastas |
 
@@ -83,10 +85,26 @@ Para "Criar conta" de usuário, agora também é pedida a data de nascimento.
 - **Tipo sanguíneo**: a tela mostra "A−", mas envia "A-", que é o que o banco aceita.
 - **Senha**: mínimo de 8 caracteres. "Manter conectado" guarda o login por 30 dias; sem marcar, por 12 horas ou até fechar o navegador.
 
+## QR Code e comprovante
+
+- Cada usuário tem um código secreto da carteira (32 letras e números, gerado no primeiro acesso à Carteira ou ao Perfil).
+- O QR Code da Carteira e do Perfil leva para `verificar.html?c=<código>`, uma página pública que a UBS abre escaneando com o celular. Ela mostra nome, CPF mascarado (`***.654.321-**`), nascimento, unidade, as doses aplicadas e quantas vacinas têm doses pendentes.
+- "Baixar comprovante" abre essa página, que tem o botão **Imprimir ou salvar em PDF**. O comprovante sai em uma página A4.
+- **Trocar código do QR**, na Carteira, gera um código novo; o QR e o link antigos deixam de funcionar.
+- Biblioteca usada: qrcode-generator (MIT), em `assets/js/qrcode.min.js`. O aviso de licença está em `TERCEIROS.md`.
+
+## Esqueci a senha
+
+O sistema não envia e-mail, então a troca de senha funciona com um **código temporário** gerado no painel:
+
+- **Usuário:** em Cadastro e Busca, o administrador abre a pessoa e clica em **Gerar código para nova senha**. A pessoa entra em "Esqueci a senha" (tela de login), informa CPF, código e a senha nova.
+- **Administrador:** o principal clica em **Código de senha** na seção Administradores do Meu perfil. A pessoa usa "Esqueci a senha" na tela de entrada do painel, com e-mail, código e senha nova.
+- O código tem 8 letras e números (ex.: `WAZW-ZD7M`), vale **24 horas**, funciona **uma vez** e é cancelado depois de **5 tentativas erradas**. Ao trocar a senha, a pessoa é desconectada de todos os aparelhos.
+- A senha do administrador principal só pode ser trocada pelo Supabase.
+
 ## Limitações (bom saber para a banca)
 
-- "Esqueci a senha" só orienta a procurar a unidade, porque o sistema não envia e-mail.
-- O QR Code da carteira continua ilustrativo.
+- O sistema não envia e-mail nem notificação no celular: os avisos de campanha aparecem dentro do site.
 
 ## Como foi testado
 
@@ -95,4 +113,6 @@ Para "Criar conta" de usuário, agora também é pedida a data de nascimento.
 - Fluxos completos: criar conta de admin → cadastrar pessoa → registrar dose → a pessoa cria a conta → vê a próxima dose no Início → edita o perfil → sai.
 - Liberação de administradores: ativar sem liberação é recusado, o principal libera e remove, o administrador comum não consegue liberar (nem pela API) e a pessoa liberada ativa e entra.
 - Pré-cadastro: tentar assumir com a data de nascimento errada é recusado; com a data certa, entra.
+- QR Code: a imagem do QR foi lida por um leitor de QR (no tamanho de computador e de celular) e leva ao comprovante certo; depois de trocar o código, o link antigo é recusado; o comprovante sai em 1 página A4.
+- Esqueci a senha: código errado, CPF de outra pessoa, código reutilizado e 5 tentativas erradas são recusados; com o código certo (até digitado em minúsculas), a senha muda e as sessões antigas caem.
 - A imagem Docker (a mesma que o Render vai usar) foi construída e testada com o Apache.

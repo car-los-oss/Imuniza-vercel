@@ -4,4 +4,4 @@
 Dockerfile
 banco
 config/config.php
-*.md
+GUIA-BACKEND.md
