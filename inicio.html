@@ -26,7 +26,7 @@
 
     <header class="topo">
       <div class="topo__textos">
-        <h1 class="topo__titulo">Olá, Laurêncio</h1>
+        <h1 class="topo__titulo">Olá, <span data-primeiro-nome></span></h1>
         <p class="topo__sub">Que bom te ver por aqui. Veja o resumo da sua imunização.</p>
       </div>
       <div class="busca topo__busca">
@@ -34,7 +34,7 @@
         <label class="so-leitor" for="busca-topo">Buscar</label>
         <input class="entrada" id="busca-topo" type="search" placeholder="Buscar vacinas, campanhas...">
       </div>
-      <span class="avatar">LS</span>
+      <span class="avatar"></span>
     </header>
 
     <main class="conteudo">
@@ -46,25 +46,25 @@
           <div class="destaque__linha">
             <span class="destaque__simbolo" data-icone="vacina" data-tamanho="26"></span>
             <div>
-              <p class="destaque__nome">Hepatite B — 2ª dose</p>
-              <p class="destaque__meta">20/06/2025 &nbsp;·&nbsp; UBS Centro &nbsp;·&nbsp; Lote BTTn40028922</p>
+              <p class="destaque__nome" id="proxima-nome">Carregando...</p>
+              <p class="destaque__meta" id="proxima-meta"></p>
             </div>
           </div>
           <div class="destaque__pe">
-            <span>Faltam 12 dias para a sua próxima dose.</span>
-            <a class="btn btn--claro btn--pequeno" href="historico.html">Ver detalhes</a>
+            <span id="proxima-pe"></span>
+            <a class="btn btn--claro btn--pequeno" href="historico.html" id="proxima-link">Ver detalhes</a>
           </div>
         </section>
 
         <section class="cartao">
           <div class="progresso__topo">
             <h2 class="cartao__titulo">Progresso vacinal</h2>
-            <span class="progresso__valor">65% completo</span>
+            <span class="progresso__valor" id="progresso-valor">0% completo</span>
           </div>
-          <div class="barra"><span style="width:65%"></span></div>
+          <div class="barra"><span id="progresso-barra" style="width:0%"></span></div>
           <div class="progresso__pe">
-            <span>13 de 20 vacinas tomadas</span>
-            <span>Faltam 3 vacinas</span>
+            <span id="progresso-feitas"></span>
+            <span id="progresso-faltam"></span>
           </div>
         </section>
 
@@ -72,42 +72,7 @@
 
       <section class="secao">
         <h2 class="secao__titulo">Campanhas ativas</h2>
-        <div class="grade-cartoes grade-cartoes--3">
-
-          <article class="cartao campanha">
-            <div class="campanha__topo">
-              <span class="icone-quadro icone-quadro--suave" data-icone="escudo" data-tamanho="20"></span>
-              <div>
-                <p class="campanha__nome">Gripe 2025</p>
-                <p class="campanha__data">Até 30/06/2025</p>
-              </div>
-            </div>
-            <p><span class="etiqueta etiqueta--verde">Disponível</span></p>
-          </article>
-
-          <article class="cartao campanha">
-            <div class="campanha__topo">
-              <span class="icone-quadro icone-quadro--suave" data-icone="pessoas" data-tamanho="20"></span>
-              <div>
-                <p class="campanha__nome">Multivacinação</p>
-                <p class="campanha__data">Até 20/06/2025</p>
-              </div>
-            </div>
-            <p><span class="etiqueta etiqueta--verde">Disponível</span></p>
-          </article>
-
-          <article class="cartao campanha">
-            <div class="campanha__topo">
-              <span class="icone-quadro icone-quadro--suave" data-icone="vacina" data-tamanho="20"></span>
-              <div>
-                <p class="campanha__nome">Febre Amarela</p>
-                <p class="campanha__data">Até 10/07/2025</p>
-              </div>
-            </div>
-            <p><span class="etiqueta etiqueta--ambar">Em breve</span></p>
-          </article>
-
-        </div>
+        <div class="grade-cartoes grade-cartoes--3" id="lista-campanhas"></div>
       </section>
 
       <section class="secao">

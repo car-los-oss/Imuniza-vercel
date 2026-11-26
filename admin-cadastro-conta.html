@@ -59,7 +59,7 @@
       <h2 class="auth__titulo" style="margin-top:14px">Criar conta de administrador</h2>
       <p class="auth__texto">Informe os dados do profissional responsável.</p>
 
-      <form data-destino="admin-visao.html" novalidate>
+      <form data-acesso="admin-cadastro" novalidate>
         <label class="campo">
           <span class="campo__rotulo">Nome</span>
           <input class="entrada" type="text" name="nome" placeholder="Amélia Oliveira"
@@ -75,12 +75,17 @@
         <label class="campo">
           <span class="campo__rotulo">CPF</span>
           <input class="entrada" type="text" inputmode="numeric" name="cpf"
-                 placeholder="123.456.789-09" data-mascara="cpf" required>
+                 placeholder="000.000.000-00" data-mascara="cpf" required>
+        </label>
+
+                <label class="campo">
+          <span class="campo__rotulo">Unidade de saúde</span>
+          <input class="entrada" type="text" name="unidade_saude" placeholder="Ex.: UBS Central">
         </label>
 
         <label class="campo">
           <span class="campo__rotulo">Senha</span>
-          <input class="entrada" type="password" name="senha" placeholder="••••••••"
+          <input class="entrada" type="password" name="senha" placeholder="Mínimo de 8 caracteres"
                  autocomplete="new-password" required>
         </label>
 
@@ -96,7 +101,7 @@
             <i></i>
             Manter conectado
           </label>
-          <a class="link" href="#">Esqueci a senha</a>
+          <a class="link" href="#" data-esqueci>Esqueci a senha</a>
         </div>
 
         <div class="auth__acoes">

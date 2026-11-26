@@ -27,10 +27,10 @@
     <header class="topo">
       <div class="topo__textos">
         <h1 class="topo__titulo">Cadastro e Busca</h1>
-        <p class="topo__sub">Registre novos usuários ou consulte cadastros existentes.</p>
+        <p class="topo__sub">Registre novos usuários, consulte cadastros e registre doses aplicadas.</p>
       </div>
-      <span class="etiqueta etiqueta--azul">UBS Central</span>
-      <span class="avatar avatar--roxo">AO</span>
+      <span class="etiqueta etiqueta--azul oculto" data-unidade></span>
+      <span class="avatar avatar--roxo"></span>
     </header>
 
     <main class="conteudo">
@@ -44,35 +44,35 @@
 
               <label class="campo">
                 <span class="campo__rotulo">Nome completo</span>
-                <input class="entrada" type="text" placeholder="Ex.: Laurêncio Silva Silva" required>
+                <input class="entrada" type="text" name="nome" maxlength="120" placeholder="Ex.: Laurêncio Silva Silva" required>
               </label>
 
               <label class="campo">
                 <span class="campo__rotulo">CPF</span>
-                <input class="entrada" type="text" inputmode="numeric"
-                       placeholder="123.456.789-90" data-mascara="cpf" required>
+                <input class="entrada" type="text" inputmode="numeric" name="cpf"
+                       placeholder="000.000.000-00" data-mascara="cpf" required>
               </label>
 
               <label class="campo">
                 <span class="campo__rotulo">Data de nascimento</span>
-                <input class="entrada" type="text" inputmode="numeric"
+                <input class="entrada" type="text" inputmode="numeric" name="data_nascimento"
                        placeholder="dd/mm/aaaa" data-mascara="data">
               </label>
 
               <label class="campo">
                 <span class="campo__rotulo">Tipo sanguíneo</span>
-                <select class="entrada">
+                <select class="entrada" name="tipo_sanguineo">
                   <option value="">Selecione</option>
-                  <option>A+</option><option>A−</option>
-                  <option>B+</option><option>B−</option>
-                  <option>AB+</option><option>AB−</option>
-                  <option>O+</option><option>O−</option>
+                  <option value="A+">A+</option><option value="A-">A−</option>
+                  <option value="B+">B+</option><option value="B-">B−</option>
+                  <option value="AB+">AB+</option><option value="AB-">AB−</option>
+                  <option value="O+">O+</option><option value="O-">O−</option>
                 </select>
               </label>
 
               <label class="campo">
                 <span class="campo__rotulo">Sexo</span>
-                <select class="entrada">
+                <select class="entrada" name="sexo">
                   <option value="">Selecione</option>
                   <option>Feminino</option>
                   <option>Masculino</option>
@@ -82,17 +82,17 @@
 
               <label class="campo">
                 <span class="campo__rotulo">Cidade</span>
-                <input class="entrada" type="text" placeholder="Ex.: Andradina">
+                <input class="entrada" type="text" name="cidade" maxlength="100" placeholder="Ex.: Assis">
               </label>
 
               <label class="campo">
                 <span class="campo__rotulo">UF</span>
-                <input class="entrada" type="text" placeholder="Ex.: SP" maxlength="2">
+                <input class="entrada" type="text" name="uf" placeholder="Ex.: SP" maxlength="2">
               </label>
 
               <label class="campo">
                 <span class="campo__rotulo">Unidade de saúde</span>
-                <input class="entrada" type="text" placeholder="Ex.: UBS Centro">
+                <input class="entrada" type="text" name="unidade_saude" maxlength="120" placeholder="Ex.: UBS Centro">
               </label>
 
             </div>
@@ -102,12 +102,12 @@
 
               <label class="campo">
                 <span class="campo__rotulo">Alergias</span>
-                <input class="entrada" type="text" placeholder="Ex.: Dipirona">
+                <input class="entrada" type="text" name="alergias" maxlength="500" placeholder="Ex.: Dipirona">
               </label>
 
               <label class="campo">
                 <span class="campo__rotulo">Uso contínuo de medicamentos</span>
-                <select class="entrada">
+                <select class="entrada" name="medicamentos_continuos">
                   <option value="">Selecione</option>
                   <option>Sim</option>
                   <option>Não</option>
@@ -117,7 +117,7 @@
 
               <label class="campo">
                 <span class="campo__rotulo">Doador de órgãos</span>
-                <select class="entrada">
+                <select class="entrada" name="doador_orgaos">
                   <option value="">Selecione</option>
                   <option>Sim</option>
                   <option>Não</option>
@@ -126,14 +126,14 @@
 
               <label class="campo">
                 <span class="campo__rotulo">Observações</span>
-                <input class="entrada" type="text" placeholder="Opcional">
+                <input class="entrada" type="text" name="observacoes" maxlength="1000" placeholder="Opcional">
               </label>
 
             </div>
 
             <div style="display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap">
               <button class="btn btn--contorno" type="reset">Limpar campos</button>
-              <button class="btn btn--primario" type="button" data-abrir-modal="modal-cadastro">
+              <button class="btn btn--primario" type="submit">
                 Cadastrar
               </button>
             </div>
@@ -148,48 +148,19 @@
 
             <div class="busca" style="margin-bottom:14px">
               <span data-icone="busca" data-tamanho="18"></span>
-              <label class="so-leitor" for="busca-usuario">Buscar por CPF</label>
-              <input class="entrada" id="busca-usuario" type="search" placeholder="Buscar por CPF...">
+              <label class="so-leitor" for="busca-usuario">Buscar por CPF ou nome</label>
+              <input class="entrada" id="busca-usuario" type="search" placeholder="Buscar por CPF ou nome...">
             </div>
 
-            <div class="proximas">
-
-              <a class="proxima" href="#">
-                <span class="avatar">LS</span>
-                <div style="flex:1">
-                  <b>Laurêncio Silva</b>
-                  <span>CPF 123.456.789-90</span>
-                </div>
-                <span style="color:var(--texto-fraco);display:flex" data-icone="seta_dir" data-tamanho="18"></span>
-              </a>
-
-              <a class="proxima" href="#">
-                <span class="avatar">MD</span>
-                <div style="flex:1">
-                  <b>Marina Duarte</b>
-                  <span>CPF 987.654.321-00</span>
-                </div>
-                <span style="color:var(--texto-fraco);display:flex" data-icone="seta_dir" data-tamanho="18"></span>
-              </a>
-
-              <a class="proxima" href="#">
-                <span class="avatar">RN</span>
-                <div style="flex:1">
-                  <b>Rafael Nogueira</b>
-                  <span>CPF 456.789.123-45</span>
-                </div>
-                <span style="color:var(--texto-fraco);display:flex" data-icone="seta_dir" data-tamanho="18"></span>
-              </a>
-
-            </div>
+            <div class="proximas" id="resultados-usuarios"><p class="lista-vazia">Carregando...</p></div>
           </section>
 
           <section class="cartao">
             <h2 class="cartao__titulo">Resumo da unidade</h2>
             <ul class="dados">
-              <li><span class="chave">Usuários cadastrados</span><span class="valor">4.318</span></li>
-              <li><span class="chave">Cadastros neste mês</span><span class="valor">126</span></li>
-              <li><span class="chave">Pendências de dados</span><span class="valor">23</span></li>
+              <li><span class="chave">Usuários cadastrados</span><span class="valor" id="resumo-usuarios">–</span></li>
+              <li><span class="chave">Cadastros neste mês</span><span class="valor" id="resumo-mes">–</span></li>
+              <li><span class="chave">Pendências de dados</span><span class="valor" id="resumo-pendencias">–</span></li>
             </ul>
           </section>
 
@@ -206,13 +177,58 @@
   <div class="modal__caixa">
     <div class="modal__selo"><span data-icone="check" data-tamanho="30"></span></div>
     <h2 class="modal__titulo" id="t-cadastro">Cadastro feito com sucesso!</h2>
-    <p class="modal__texto">
+    <p class="modal__texto" id="cadastro-texto">
       O usuário já pode acessar a carteira de vacinação digital com o CPF informado.
     </p>
     <div class="modal__acoes">
-      <button class="btn btn--primario btn--bloco" type="button" data-fechar-modal>Ver cadastro</button>
+      <button class="btn btn--primario btn--bloco" type="button" id="ver-cadastro">Ver cadastro</button>
       <button class="btn btn--contorno btn--bloco" type="button" data-fechar-modal>Cadastrar outro</button>
     </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-usuario" role="dialog" aria-modal="true" aria-labelledby="usuario-titulo">
+  <div class="modal__caixa modal__caixa--form modal__caixa--alto">
+    <h2 class="modal__titulo" id="usuario-titulo">Cadastro</h2>
+    <p class="modal__texto" id="usuario-situacao"></p>
+
+    <ul class="dados" id="usuario-dados" style="margin-bottom:18px"></ul>
+
+    <h3 class="cartao__titulo">Vacinas registradas</h3>
+    <ul class="dados" id="usuario-vacinas" style="margin-bottom:22px"></ul>
+
+    <h3 class="cartao__titulo" style="margin-bottom:14px">Registrar dose aplicada</h3>
+    <form id="form-dose" novalidate>
+      <input type="hidden" name="usuario_id">
+      <div class="grade-campos">
+        <label class="campo">
+          <span class="campo__rotulo">Vacina</span>
+          <select class="entrada" name="vacina_id" required>
+            <option value="">Carregando...</option>
+          </select>
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">Dose (nº)</span>
+          <input class="entrada" type="number" name="numero_dose" min="1" value="1" inputmode="numeric" required>
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">Data da aplicação</span>
+          <input class="entrada" type="text" inputmode="numeric" name="data_aplicacao" placeholder="dd/mm/aaaa" data-mascara="data" required>
+        </label>
+        <label class="campo">
+          <span class="campo__rotulo">Lote</span>
+          <input class="entrada" type="text" name="lote" maxlength="40" placeholder="Ex.: BTTn40028922" required>
+        </label>
+        <label class="campo campo--largo">
+          <span class="campo__rotulo">Local de aplicação</span>
+          <input class="entrada" type="text" name="local_aplicacao" maxlength="120" placeholder="Ex.: UBS Centro" required>
+        </label>
+      </div>
+      <div class="modal__acoes">
+        <button class="btn btn--primario btn--bloco" type="submit">Registrar dose</button>
+        <button class="btn btn--neutro btn--bloco" type="button" data-fechar-modal>Fechar</button>
+      </div>
+    </form>
   </div>
 </div>
 

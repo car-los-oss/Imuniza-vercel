@@ -34,20 +34,20 @@
         <label class="so-leitor" for="busca-topo">Buscar</label>
         <input class="entrada" id="busca-topo" type="search" placeholder="Buscar vacinas, campanhas...">
       </div>
-      <span class="avatar">LS</span>
+      <span class="avatar"></span>
     </header>
 
     <main class="conteudo">
 
       <section class="cartao secao">
         <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-          <span class="avatar avatar--g">LS</span>
+          <span class="avatar avatar--g" id="perfil-avatar"></span>
           <div style="flex:1;min-width:200px">
-            <h2 style="font-size:24px;font-weight:800;letter-spacing:-.01em">Laurêncio Silva</h2>
+            <h2 style="font-size:24px;font-weight:800;letter-spacing:-.01em" id="perfil-nome">Carregando...</h2>
             <div class="contato">
-              <span>laurencio@email.com</span>
-              <span>(14) 99999-0000</span>
-              <span>CPF 123.456.789-90</span>
+              <span id="perfil-email"></span>
+              <span id="perfil-telefone"></span>
+              <span id="perfil-cpf"></span>
             </div>
           </div>
           <button class="btn btn--contorno" type="button" data-abrir-modal="modal-perfil">
@@ -61,20 +61,20 @@
         <section class="cartao">
           <h2 class="cartao__titulo">Informações pessoais</h2>
           <ul class="dados">
-            <li><span class="chave">Data de nascimento</span><span class="valor">10/10/2010</span></li>
-            <li><span class="chave">Tipo sanguíneo</span><span class="valor">O+</span></li>
-            <li><span class="chave">Sexo</span><span class="valor">Masculino</span></li>
-            <li><span class="chave">Cidade</span><span class="valor">Andradina Cavalcanti — ES</span></li>
+            <li><span class="chave">Data de nascimento</span><span class="valor" id="perfil-nascimento"></span></li>
+            <li><span class="chave">Tipo sanguíneo</span><span class="valor" id="perfil-sangue"></span></li>
+            <li><span class="chave">Sexo</span><span class="valor" id="perfil-sexo"></span></li>
+            <li><span class="chave">Cidade</span><span class="valor" id="perfil-cidade"></span></li>
           </ul>
         </section>
 
         <section class="cartao">
           <h2 class="cartao__titulo">Informações de saúde</h2>
           <ul class="dados">
-            <li><span class="chave">Alergias</span><span class="valor">Penicilina</span></li>
-            <li><span class="chave">Uso contínuo de medicamentos</span><span class="valor">Não informado</span></li>
-            <li><span class="chave">Unidade de saúde</span><span class="valor">UBS Central</span></li>
-            <li><span class="chave">Doador de órgãos</span><span class="valor">Não</span></li>
+            <li><span class="chave">Alergias</span><span class="valor" id="perfil-alergias"></span></li>
+            <li><span class="chave">Uso contínuo de medicamentos</span><span class="valor" id="perfil-medicamentos"></span></li>
+            <li><span class="chave">Unidade de saúde</span><span class="valor" id="perfil-unidade"></span></li>
+            <li><span class="chave">Doador de órgãos</span><span class="valor" id="perfil-doador"></span></li>
           </ul>
         </section>
 
@@ -94,7 +94,7 @@
         <span>Essas informações podem ser exibidas em situações de emergência.</span>
       </div>
 
-      <a class="btn btn--perigo" href="index.html">
+      <a class="btn btn--perigo" href="index.html" data-sair>
         <span data-icone="sair" data-tamanho="18" style="display:flex"></span>
         Sair da conta
       </a>
@@ -110,31 +110,31 @@
     <h2 class="modal__titulo" id="t-perfil" style="text-align:center">Editar perfil</h2>
     <p class="modal__texto" style="text-align:center">Atualize seus dados pessoais e de saúde.</p>
 
-    <form data-destino="perfil.html" novalidate>
+    <form id="form-perfil" novalidate>
       <div class="grade-campos">
         <label class="campo">
           <span class="campo__rotulo">Nome completo</span>
-          <input class="entrada" type="text" value="Laurêncio Silva">
+          <input class="entrada" type="text" name="nome" required>
         </label>
         <label class="campo">
           <span class="campo__rotulo">Telefone</span>
-          <input class="entrada" type="tel" value="(14) 99999-0000">
+          <input class="entrada" type="tel" name="telefone" data-mascara="telefone">
         </label>
         <label class="campo">
           <span class="campo__rotulo">E-mail</span>
-          <input class="entrada" type="email" value="laurencio@email.com">
+          <input class="entrada" type="email" name="email" required>
         </label>
         <label class="campo">
           <span class="campo__rotulo">Cidade</span>
-          <input class="entrada" type="text" value="Andradina Cavalcanti">
+          <input class="entrada" type="text" name="cidade">
         </label>
         <label class="campo">
           <span class="campo__rotulo">Alergias</span>
-          <input class="entrada" type="text" value="Penicilina">
+          <input class="entrada" type="text" name="alergias">
         </label>
         <label class="campo">
           <span class="campo__rotulo">Unidade de saúde</span>
-          <input class="entrada" type="text" value="UBS Central">
+          <input class="entrada" type="text" name="unidade_saude">
         </label>
       </div>
 
