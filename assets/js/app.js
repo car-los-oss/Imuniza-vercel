@@ -496,14 +496,13 @@
     });
   }
 
-  function ligarEsqueciSenha() {
-    document.querySelectorAll("[data-esqueci]").forEach(function (link) {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        var form = link.closest("form");
-        if (form) mostrarAviso(form, "Para trocar a senha, procure a sua unidade de saúde com um documento com foto.", "azul");
-      });
-    });
+  function textoCodigo(r, quem) {
+    return "Código para " + r.nome + ": " + r.codigo + " (vale até " + dataBr(r.expira_em) + " às " + horaBr(r.expira_em) +
+      "). " + quem + " usa em “Esqueci a senha”. O código só funciona uma vez.";
+  }
+
+  function avisoCodigo(alvo, r, quem) {
+    alvo.innerHTML = '<div class="aviso aviso--verde" role="status">' + icone("check", 20) + "<span>" + esc(textoCodigo(r, quem)) + "</span></div>";
   }
 
   function ligarEntrada(form, area, caminho, destino) {
@@ -848,7 +847,52 @@
     });
   };
 
+  function enderecoComprovante(codigo) {
+    return new URL("verificar.html?c=" + codigo, window.location.href).href;
+  }
+
+  function desenharQr(id, texto) {
+    var caixa = document.getElementById(id);
+    if (!caixa) return;
+    var quadro = caixa.querySelector(".qr__quadro");
+    if (typeof window.qrcode !== "function") {
+      caixa.classList.add("qr--erro");
+      return;
+    }
+    var qr = window.qrcode(0, "M");
+    qr.addData(texto);
+    qr.make();
+    quadro.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 2, scalable: true });
+    quadro.classList.add("qr__quadro--pronto");
+    caixa.classList.remove("qr--erro");
+  }
+
+  function mostrarCarteira(codigo) {
+    var endereco = enderecoComprovante(codigo);
+    desenharQr("qr-carteira", endereco);
+    desenharQr("qr-perfil", endereco);
+    var link = document.getElementById("link-comprovante");
+    if (link) link.href = endereco;
+  }
+
   TELAS.carteira = function (pessoa) {
+    var trocar = document.getElementById("trocar-codigo");
+    trocar.addEventListener("click", function () {
+      if (!window.confirm("Trocar o código do QR? O QR Code e o link antigos param de funcionar.")) return;
+      trocar.disabled = true;
+      api("usuario/carteira.php", { metodo: "POST" })
+        .then(function (r) {
+          mostrarCarteira(r.codigo);
+          trocar.textContent = "Código trocado. O QR antigo não vale mais.";
+        })
+        .catch(function (erro) {
+          trocar.disabled = false;
+          window.alert(erro.message);
+        });
+    });
+
+    api("usuario/carteira.php").then(function (r) { mostrarCarteira(r.codigo); });
+
     document.getElementById("titular-nome").textContent = pessoa.nome;
     document.getElementById("titular-cpf").textContent = cpfBr(pessoa.cpf);
     document.getElementById("titular-nascimento").textContent = ouNaoInformado(dataBr(pessoa.data_nascimento));
@@ -896,6 +940,7 @@
   TELAS.perfil = function (pessoa) {
     var form = document.getElementById("form-perfil");
     mostrarPerfilUsuario(pessoa);
+    api("usuario/carteira.php").then(function (r) { mostrarCarteira(r.codigo); });
     preencherForm(form, pessoa);
 
     document.querySelector('[data-abrir-modal="modal-perfil"]').addEventListener("click", function () {
@@ -1167,6 +1212,8 @@
       ].map(function (p) {
         return '<li><span class="chave">' + esc(p[0]) + '</span><span class="valor">' + esc(p[1]) + "</span></li>";
       }).join("");
+      document.getElementById("usuario-senha").classList.toggle("oculto", !u.conta_ativa);
+      document.getElementById("codigo-usuario").innerHTML = "";
       document.getElementById("usuario-vacinas").innerHTML = r.vacinas.length
         ? r.vacinas.map(function (v) {
           var proxima = v.doses.filter(function (d) { return d.status === "pendente"; })[0];
@@ -1204,6 +1251,19 @@
     }
 
     formDose.querySelector('[name="vacina_id"]').addEventListener("change", function () { atualizarNumeroDose(); });
+
+    document.getElementById("gerar-codigo-usuario").addEventListener("click", function () {
+      var botao = this;
+      var alvo = document.getElementById("codigo-usuario");
+      if (!aberto) return;
+      botao.disabled = true;
+      api("admin/redefinicao.php", { dados: { tipo: "usuario", id: aberto.id } })
+        .then(function (r) { avisoCodigo(alvo, r, "A pessoa"); })
+        .catch(function (erro) {
+          alvo.innerHTML = '<div class="aviso aviso--vermelho">' + icone("alerta", 20) + "<span>" + esc(erro.message) + "</span></div>";
+        })
+        .then(function () { botao.disabled = false; });
+    });
 
     enviarForm(formDose, function (dados) {
       return api("admin/doses.php", { dados: dados }).then(function (r) {
@@ -1283,7 +1343,9 @@
           var situacao = a.papel === "principal" ? "Principal" : a.ativo ? "Ativo" : "Aguardando ativação";
           var cor = a.papel === "principal" ? "azul" : a.ativo ? "verde" : "ambar";
           var remover = a.papel === "principal" ? "" :
-            '<button class="btn btn--neutro btn--pequeno" type="button" data-remover-admin="' + a.id + '" data-nome="' + esc(a.nome) + '">Remover</button>';
+            '<div style="display:grid;gap:8px">' +
+            (a.ativo ? '<button class="btn btn--neutro btn--pequeno" type="button" data-codigo-admin="' + a.id + '">Código de senha</button>' : "") +
+            '<button class="btn btn--neutro btn--pequeno" type="button" data-remover-admin="' + a.id + '" data-nome="' + esc(a.nome) + '">Remover</button></div>';
           return '<div class="proxima">' +
             '<span class="avatar avatar--roxo">' + esc(iniciais(a.nome)) + '</span>' +
             '<div style="flex:1"><b>' + esc(a.nome) + '</b><span>' + esc(a.email) + " · CPF " + cpfBr(a.cpf) +
@@ -1295,6 +1357,15 @@
     }
 
     lista.addEventListener("click", function (e) {
+      var gerar = e.target.closest("[data-codigo-admin]");
+      if (gerar) {
+        gerar.disabled = true;
+        api("admin/redefinicao.php", { dados: { tipo: "admin", id: +gerar.dataset.codigoAdmin } })
+          .then(function (r) { mostrarAviso(form, textoCodigo(r, "A pessoa"), "verde"); })
+          .catch(function (erro) { mostrarAviso(form, erro.message); })
+          .then(function () { gerar.disabled = false; });
+        return;
+      }
       var botao = e.target.closest("[data-remover-admin]");
       if (!botao) return;
       if (!window.confirm("Remover o acesso de " + botao.dataset.nome + "? A pessoa não vai mais conseguir entrar no painel.")) return;
@@ -1372,10 +1443,67 @@
     });
   }
 
+  function iniciarComprovante() {
+    var alvo = document.getElementById("comprovante");
+    var imprimir = document.getElementById("imprimir");
+    var codigo = parametro("c") || "";
+    imprimir.addEventListener("click", function () { window.print(); });
+
+    api("carteira.php?c=" + encodeURIComponent(codigo)).then(function (r) {
+      var t = r.titular;
+      var linhas = r.aplicadas.map(function (d) {
+        var dose = d.total_doses === 1 && d.numero_dose === 1 ? "Única" : ordinal(d.numero_dose);
+        return "<tr><td>" + esc(d.vacina) + "</td><td>" + dose + "</td><td>" + dataBr(d.data_aplicacao) + "</td>" +
+          "<td>" + esc(d.lote || "—") + "</td><td>" + esc(d.local_aplicacao || "—") + "</td></tr>";
+      }).join("");
+      alvo.innerHTML =
+        '<div class="aviso aviso--verde secao">' + icone("check", 20) +
+          "<span><b>Comprovante válido.</b> Consultado em " + dataBr(r.consultado_em) + " às " + horaBr(r.consultado_em) +
+          (r.atualizado_em ? ". Última atualização dos registros: " + dataBr(r.atualizado_em) : "") + ".</span></div>" +
+        '<section class="cartao secao"><h2 class="cartao__titulo">Titular</h2><ul class="dados">' +
+          '<li><span class="chave">Nome</span><span class="valor">' + esc(t.nome) + "</span></li>" +
+          '<li><span class="chave">CPF</span><span class="valor">' + esc(t.cpf) + "</span></li>" +
+          '<li><span class="chave">Nascimento</span><span class="valor">' + esc(ouNaoInformado(dataBr(t.data_nascimento))) + "</span></li>" +
+          '<li><span class="chave">Unidade de saúde</span><span class="valor">' + esc(ouNaoInformado(t.unidade_saude)) + "</span></li>" +
+        "</ul></section>" +
+        '<section class="cartao secao"><h2 class="cartao__titulo">Doses aplicadas (' + r.aplicadas.length + ")</h2>" +
+          (r.aplicadas.length
+            ? '<div class="doses-rolagem"><table class="doses"><thead><tr><th scope="col">Vacina</th><th scope="col">Dose</th>' +
+              '<th scope="col">Data</th><th scope="col">Lote</th><th scope="col">Local</th></tr></thead><tbody>' + linhas + "</tbody></table></div>"
+            : '<p class="lista-vazia">Nenhuma dose aplicada registrada.</p>') +
+        "</section>" +
+        '<div class="aviso aviso--' + (r.vacinas_pendentes ? "ambar" : "azul") + '">' + icone(r.vacinas_pendentes ? "alerta" : "info", 20) +
+          "<span>" + (r.vacinas_pendentes
+            ? r.vacinas_pendentes + plural(r.vacinas_pendentes, " vacina com doses pendentes", " vacinas com doses pendentes") + " no calendário do titular."
+            : "Nenhuma dose pendente no calendário do titular.") + "</span></div>";
+      imprimir.classList.remove("oculto");
+      document.title = "Comprovante de vacinação · " + t.nome;
+    }).catch(function (erro) {
+      alvo.innerHTML = '<div class="aviso aviso--vermelho">' + icone("alerta", 20) + "<span>" + esc(erro.message) + "</span></div>";
+    });
+  }
+
+  function ligarRedefinicao(form, tipo, destino) {
+    var campo = form.querySelector('[name="codigo"]');
+    campo.addEventListener("input", function () {
+      var v = campo.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8);
+      campo.value = v.length > 4 ? v.slice(0, 4) + "-" + v.slice(4) : v;
+    });
+    enviarForm(form, function (dados) {
+      dados.tipo = tipo;
+      return api("redefinir.php", { dados: dados, area: null }).then(function () {
+        window.location.href = destino + "?senha=nova";
+      });
+    });
+  }
+
   function iniciarAcesso() {
     var formulario = document.querySelector("form[data-acesso]");
     if (!formulario) return;
     var tipo = formulario.dataset.acesso;
+    if (parametro("senha") === "nova") mostrarAviso(formulario, "Senha alterada. Entre com a nova senha.", "verde");
+    if (tipo === "redefinir") ligarRedefinicao(formulario, "usuario", "index.html");
+    if (tipo === "admin-redefinir") ligarRedefinicao(formulario, "admin", "admin.html");
     if (tipo === "login") ligarEntrada(formulario, "usuario", "usuario/login.php", "inicio.html");
     if (tipo === "cadastro") ligarEntrada(formulario, "usuario", "usuario/cadastro.php", "inicio.html");
     if (tipo === "admin-login") ligarEntrada(formulario, "admin", "admin/login.php", "admin-visao.html");
@@ -1391,9 +1519,10 @@
 
     if (area && MENUS[area]) {
       iniciarAreaLogada(area, tela);
+    } else if (document.body.dataset.pagina === "verificar") {
+      iniciarComprovante();
     } else {
       preencherIcones();
-      ligarEsqueciSenha();
       iniciarAcesso();
     }
   });

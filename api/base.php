@@ -475,6 +475,34 @@ function dosesDoUsuario(int $usuarioId): array
     return ['vacinas' => array_values($vacinas), 'atualizado_em' => $atualizadoEm];
 }
 
+function mascararCpf(string $cpf): string
+{
+    return '***.' . substr($cpf, 3, 3) . '.' . substr($cpf, 6, 3) . '-**';
+}
+
+function novoCodigoCarteira(): string
+{
+    return bin2hex(random_bytes(16));
+}
+
+function normalizarCodigoRedefinicao(?string $codigo): string
+{
+    return preg_replace('/[^A-Z0-9]/', '', mb_strtoupper((string) $codigo));
+}
+
+function novoCodigoRedefinicao(): array
+{
+    $letras = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+    $codigo = '';
+    for ($i = 0; $i < 8; $i++) {
+        $codigo .= $letras[random_int(0, strlen($letras) - 1)];
+    }
+    return [
+        'codigo' => substr($codigo, 0, 4) . '-' . substr($codigo, 4),
+        'hash' => hash('sha256', $codigo),
+    ];
+}
+
 function sqlAlcance(string $colunaPublico): string
 {
     return "(select count(*) from usuarios u where imuniza_no_publico(u.data_nascimento, {$colunaPublico}))";

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comprovante de vacinação · Imuniza</title>
+<meta name="description" content="Comprovante de vacinação emitido pelo Imuniza.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2e1ae6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/paginas/verificar.css">
+</head>
+<body data-pagina="verificar">
+
+<main class="comprovante">
+
+  <header class="comprovante__topo">
+    <div class="marca">
+      <img class="marca__simbolo" src="assets/img/logo-icone.png" alt="" width="44" height="44">
+      <span class="marca__textos">
+        <span class="marca__nome">imuniza</span>
+        <span class="marca__linha">Comprovante de vacinação</span>
+      </span>
+    </div>
+    <button class="btn btn--primario btn--pequeno comprovante__imprimir oculto" type="button" id="imprimir">
+      Imprimir ou salvar em PDF
+    </button>
+  </header>
+
+  <div id="comprovante" aria-live="polite"><p class="lista-vazia">Carregando comprovante...</p></div>
+
+  <p class="comprovante__rodape">
+    Documento gerado a partir dos registros das unidades de saúde cadastradas no Imuniza.
+  </p>
+
+</main>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -235,6 +235,7 @@ select.entrada {
 .aviso--ambar { background: #fff7ed; color: #9a3412; }
 .aviso--azul  { background: var(--primaria-clara); color: var(--primaria-escura); }
 .aviso svg { flex: 0 0 20px; margin-top: 1px; }
+.aviso > [data-icone] { flex: 0 0 20px; display: flex; }
 .aviso--vermelho { background: var(--vermelho-fundo); color: #991b1b; }
 .aviso--verde { background: var(--verde-fundo); color: var(--verde-texto); }
 .form-aviso { margin-bottom: 18px; }

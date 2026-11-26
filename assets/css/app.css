@@ -232,6 +232,14 @@
   border-radius: 14px;
   background: #16213a;
 }
+.qr__quadro--pronto {
+  width: 84%;
+  padding: 8px;
+  border-radius: 10px;
+  background: #fff;
+}
+.qr__quadro svg { display: block; width: 100%; height: 100%; }
+.qr--erro .qr__quadro { background: #d7dce6; }
 
 .perfil-topo {
   display: flex;

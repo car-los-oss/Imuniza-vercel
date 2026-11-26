@@ -17,6 +17,16 @@ alter table administradores add constraint administradores_papel_check check (pa
 alter table administradores add column if not exists liberado_por bigint references administradores (id) on delete set null;
 alter table administradores alter column senha_hash drop not null;
 
+alter table usuarios add column if not exists codigo_carteira char(32);
+create unique index if not exists usuarios_codigo_carteira_idx on usuarios (codigo_carteira);
+
+alter table usuarios add column if not exists reset_hash char(64);
+alter table usuarios add column if not exists reset_expira timestamptz;
+alter table usuarios add column if not exists reset_tentativas smallint not null default 0;
+alter table administradores add column if not exists reset_hash char(64);
+alter table administradores add column if not exists reset_expira timestamptz;
+alter table administradores add column if not exists reset_tentativas smallint not null default 0;
+
 create or replace function imuniza_no_publico(nascimento date, publico text)
 returns boolean
 language sql
