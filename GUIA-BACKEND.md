@@ -17,6 +17,7 @@ O back-end está completo: PHP + PostgreSQL (Supabase), com login por token. Tod
 | `banco/schema.sql` | As tabelas (já rodado no Supabase em 26/10, não precisa rodar de novo) |
 | `banco/atualizacao.sql` | Ajustes que as telas precisam. Pode rodar mais de uma vez (rodar de novo sempre que vier uma versão nova) |
 | `banco/dados-teste.sql` | Contas e dados de teste com datas relativas ao dia em que rodar |
+| `banco/dados-demo.sql` | Volume de demonstração: 60 pessoas, cerca de 460 doses, 10 eventos e 2 administradores. Rodar **depois** do `dados-teste.sql` |
 | `Dockerfile`, `.dockerignore`, `.htaccess`, `.gitignore` | Publicação no Render e proteção das pastas |
 
 ## Passo 1 — Banco no Supabase
@@ -74,6 +75,17 @@ Senha de todas: `Imuniza@2026`.
 | Bruno Almeida (admin) | `bruno.almeida@email.com`, CPF `529.982.247-25` | Liberado pela Amélia, mas ainda sem senha. Serve para mostrar o "Ativar acesso" na apresentação |
 
 Para "Criar conta" de usuário, agora também é pedida a data de nascimento.
+
+## Dados de demonstração
+
+O `banco/dados-demo.sql` deixa o sistema com cara de uso real, sem mexer nas contas de teste:
+
+- 60 pessoas com nomes e CPFs fictícios (CPFs com dígitos válidos), de bebês a idosos, em Assis, Tarumã, Cândido Mota, Paraguaçu Paulista e Maracaí. São 50 com conta criada e 10 só com pré-cadastro da UBS.
+- Doses coerentes com a idade: bebês com BCG e Hepatite B em andamento, crianças com o calendário infantil, adultos com Hepatite B, Febre Amarela e Tríplice Viral em datas de adulto, Covid em 2021–2022 e gripe nas campanhas. Tem doses aplicadas, previstas e algumas atrasadas.
+- Administradores: Carla Souza (`carla.souza@exemplo.com`, ativa) e Diego Martins (`diego.martins@exemplo.com`, aguardando ativação), os dois liberados pela Amélia.
+- 10 eventos ao longo do ano (8 enviados e 2 pendentes).
+- Senha de todas as contas de demonstração: `Imuniza@2026`. Os e-mails terminam em `@exemplo.com`.
+- As datas são relativas ao dia em que o script roda, e ele pode rodar mais de uma vez: apaga só o que é de demonstração e cria de novo. Se rodar o `dados-teste.sql` de novo, rode o `dados-demo.sql` depois dele.
 
 ## Decisões tomadas
 
