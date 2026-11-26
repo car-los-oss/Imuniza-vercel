@@ -222,3 +222,21 @@ select.entrada {
     animation-duration: .01ms !important;
   }
 }
+
+.aviso {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 18px;
+  border-radius: var(--r-m);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.aviso--ambar { background: #fff7ed; color: #9a3412; }
+.aviso--azul  { background: var(--primaria-clara); color: var(--primaria-escura); }
+.aviso svg { flex: 0 0 20px; margin-top: 1px; }
+.aviso--vermelho { background: var(--vermelho-fundo); color: #991b1b; }
+.aviso--verde { background: var(--verde-fundo); color: var(--verde-texto); }
+.form-aviso { margin-bottom: 18px; }
+.campo--erro .entrada { border-color: var(--vermelho); }
+.btn[disabled] { opacity: .6; cursor: progress; }

@@ -162,19 +162,6 @@
 .dados dt, .dados .chave { color: var(--texto-med); }
 .dados dd, .dados .valor { margin: 0; font-weight: 700; text-align: right; }
 
-.aviso {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 14px 18px;
-  border-radius: var(--r-m);
-  font-size: 14.5px;
-  line-height: 1.5;
-}
-.aviso--ambar { background: #fff7ed; color: #9a3412; }
-.aviso--azul  { background: var(--primaria-clara); color: var(--primaria-escura); }
-.aviso svg { flex: 0 0 20px; margin-top: 1px; }
-
 .icone-quadro {
   width: 42px; height: 42px;
   flex: 0 0 42px;
@@ -447,11 +434,6 @@
   .cartao { box-shadow: none; border: 1px solid var(--borda); break-inside: avoid; }
 }
 
-.aviso--vermelho { background: var(--vermelho-fundo); color: #991b1b; }
-.aviso--verde { background: var(--verde-fundo); color: var(--verde-texto); }
-.form-aviso { margin-bottom: 18px; }
-.campo--erro .entrada { border-color: var(--vermelho); }
-.btn[disabled] { opacity: .6; cursor: progress; }
 .modal__caixa--alto { max-height: calc(100dvh - 40px); overflow-y: auto; }
 .lista-vazia { text-align: center; color: var(--texto-med); padding: 20px 8px; font-size: 14.5px; }
 .proxima--botao { width: 100%; border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
